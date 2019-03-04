@@ -1,0 +1,30 @@
+// Functions themselves
+
+
+
+
+
+int str_len(char* a){
+
+    int length=0;
+    while(*a!='\0'){
+            a ++;
+            length ++;
+    }
+    return length;
+}
+
+int num_words(char* str){
+ int words=0;
+ int elem=1;
+ for(elem=1;elem<str_len(str);elem++){
+
+        if(str[elem-1]==' ' && str[elem]!=' '){
+            words ++;}
+}
+ if(str[0]!=' ')
+            words ++;
+
+return words;
+}
+
