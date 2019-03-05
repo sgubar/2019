@@ -2,15 +2,21 @@
 
 // I'm 8 variant :)
 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <dk_tool.h> // my directory with 2 functions
 
 int main()
 {
-    char* text="hey guyz";
+    char *text=(char*)malloc(sizeof(char)*100);
+    gets(text);
+    if (text==NULL){
+        return -1;
+    }
     int result;
     result=num_words(text);
-    printf("%d",result);
+    printf("Number of words is %d\n",result);
+    system ("PAUSE");
     return 0;
 }
