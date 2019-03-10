@@ -10,15 +10,6 @@
         {
             space++;
         }
-        if ( space == 1 && i != 0 && nospace == 0)
-        {
-            nospace = 1;
-            space = 0;
-        }
-        if ( i == 0 && myString[i] != ' ') 
-        {
-            nospace = 1;
-        }
     }
      return space;
 }
