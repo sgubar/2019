@@ -1,2 +1,2 @@
 #pragma once
-int reversal(int *arr);
+int reversal(int *arr,int len);
