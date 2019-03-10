@@ -3,8 +3,7 @@
 
 int main(int argc, const char * argv[]) {
 	
-	/* ôóíêöèÿ getStr ïîäñ÷èòûâàåò ñêîëüêî ðàç 
-	â ñòðîêå âñòðå÷àåòñÿ ñî÷èòàíèå ñèìâîëîâ 'el' */
+	/* ôóíêöèÿ getStr ïîäñ÷èòûâàåò ñêîëüêî ðàç */
 	
 	printf("Counter Str:%d!\n", getStr("Hello world")); 
 	printf("Counter Str:%d!\n", getStr("Hello el ello"));
