@@ -3,7 +3,8 @@
 
 int main(int argc, const char * argv[]) {
 	
-	/* ГґГіГ­ГЄГ¶ГЁГї getStr ГЇГ®Г¤Г±Г·ГЁГІГ»ГўГ ГҐГІ Г±ГЄГ®Г«ГјГЄГ® Г°Г Г§ */
+	/* функция getStr подсчитывает сколько раз 
+	в строке встречается сочитание символов 'el' */
 	
 	printf("Counter Str:%d!\n", getStr("Hello world")); 
 	printf("Counter Str:%d!\n", getStr("Hello el ello"));
