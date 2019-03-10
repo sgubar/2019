@@ -5,7 +5,7 @@
 void output_text_address(char *text)
 {
     for(int number = 0; text[number] != '\0'; number++)
-        printf("%c = %p\n", text[number], &text[number]);
+        printf("%c = %i = %p\n", text[number], number, &text[number]);
     printf("\n");
 }
 
@@ -22,17 +22,17 @@ int main()
     scanf("%s", input);
     char *symbols = input;
 
-
+    printf("function return = %i\n", get_sym_with_text(text, symbols));
 
     if(get_sym_with_text(text, symbols) == -1)
-    {
-        printf("%i\n", get_sym_with_text(text, symbols));
         return 0;
-    }
 
 
+    printf("\n");
     for(int number = 0; number < size_sym(symbols); number++)
-        printf("%c = %p\n", text[get_sym_with_text(text, symbols) + number],
+        printf("%c = %i = %p\n",
+                text[get_sym_with_text(text, symbols) + number],
+                get_sym_with_text(text, symbols) + number,
                 &text[get_sym_with_text(text, symbols) + number]);
 
 
