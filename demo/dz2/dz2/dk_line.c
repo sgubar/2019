@@ -10,6 +10,7 @@
 #include <stdlib.h>
 
 Point *copyPointWithPoint(Point *aPoint);
+Point *creatPointWithCoordinate(int x, int y);
 
 Line *createLine(Point *A, Point *B)
 {
@@ -23,6 +24,19 @@ Line *createLine(Point *A, Point *B)
 			theResult->A = copyPointWithPoint(A);
 			theResult->B = copyPointWithPoint(B);
 		}
+	}
+	
+	return theResult;
+}
+
+Line *createLineWithCoordinate(int xA, int yA, int xB, int yB)
+{
+	Line *theResult = (Line *)malloc(sizeof(Line));
+	
+	if (NULL != theResult)
+	{
+		theResult->A = creatPointWithCoordinate(xA, yA);
+		theResult->B = creatPointWithCoordinate(xB, yB);
 	}
 	
 	return theResult;
@@ -70,6 +84,18 @@ Point *copyPointWithPoint(Point *aPoint)
 	{
 		theResult->x = aPoint->x;
 		theResult->y = aPoint->y;
+	}
+	
+	return theResult;
+}
+
+Point *creatPointWithCoordinate(int x, int y)
+{
+	Point *theResult = (Point *)malloc(sizeof(Point));
+	if (NULL != theResult)
+	{
+		theResult->x = x;
+		theResult->y = y;
 	}
 	
 	return theResult;

@@ -27,6 +27,7 @@ typedef struct tagLine
 
 // Init interface
 Line *createLine(Point *A, Point *B);
+Line *createLineWithCoordinate(int xA, int yA, int xB, int yB);
 void destroyLine(Line *aLine);
 
 float lenghLine(Line *aLine);

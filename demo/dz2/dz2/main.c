@@ -15,7 +15,18 @@ int main(int argc, const char * argv[])
 	Point B = {4,6};
 	
 	Line *AB = createLine(&A, &B);
+	Line *CD = createLineWithCoordinate(0, 1, 2, 3);
 
+	printLine(AB);
+	printLine(CD);
+	
+	CD->A->y = 34;
+	printLine(CD);
+
+	A.x = 10;
+	printLine(AB);
+	
+	AB->A->x = 11;
 	printLine(AB);
 
 	printf("The length of Line AB = %f\n", lenghLine(AB));
