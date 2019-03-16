@@ -246,25 +246,25 @@ int compareDot(Dot *d, int x, int y,int offsetX, int offsetY, int currentId){
 }
 
 int isOnLine(Dot *a, Dot *b, int x, int y) {
+Dot *c = generateDot(x,y,'N');
 
-	Dot *c = generateDot(x,y,'N');
-
-	int as = calculateLineLength(a, b);
+    /*int as = calculateLineLength(a, b);
 	int bs = calculateLineLength(b, c);
 	int cs = calculateLineLength(c, a);
 
 	float halfPerimetr = (as + bs + cs) / 2;
 	float square = sqrt(halfPerimetr*(halfPerimetr - as)*(halfPerimetr - bs)*(halfPerimetr - cs));
 
-	//printf("%i , %i, %c, %c, s = %f\n", x, y, a->id,b->id, square);
+	printf("%i , %i, %c, %c, s = %f\n", x, y, a->id,b->id, square);
 
 	if (isnan(square))
 	{
 		return 1;
 	}
 	return 0;
+	*/
 
-	/*int dx1 = b->x - a->x;
+	int dx1 = b->x - a->x;
 	int dy1 = b->y - a->y;
 
 	int dx = x - a->x;
@@ -275,11 +275,12 @@ int isOnLine(Dot *a, Dot *b, int x, int y) {
 	float ab = sqrt(dx1 * dx1 + dy1 * dy1);
 
 	float h = s / ab;
-	if (h > 1)
+
+	if (h <= 0.8 && h >= 0)
 	{
 		return 1;
 	}
-	return 0;*/
+	return 0;
 }
 
 float calculateTrapeziumSquare(Trapezium *trap) {
