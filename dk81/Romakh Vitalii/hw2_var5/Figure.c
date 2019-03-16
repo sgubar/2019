@@ -247,22 +247,21 @@ int compareDot(Dot *d, int x, int y,int offsetX, int offsetY, int currentId){
 
 int isOnLine(Dot *a, Dot *b, int x, int y) {
 Dot *c = generateDot(x,y,'N');
+	 
+    float abSide = calculateLineLength(a, b); //a
+	float bcSide= calculateLineLength(b, c); // c
+	float caSide = calculateLineLength(c, a); //b
 
-    /*int as = calculateLineLength(a, b);
-	int bs = calculateLineLength(b, c);
-	int cs = calculateLineLength(c, a);
-
-	float halfPerimetr = (as + bs + cs) / 2;
-	float square = sqrt(halfPerimetr*(halfPerimetr - as)*(halfPerimetr - bs)*(halfPerimetr - cs));
-
-	printf("%i , %i, %c, %c, s = %f\n", x, y, a->id,b->id, square);
-
-	if (isnan(square))
-	{
-		return 1;
+	if (abSide >= bcSide + caSide || bcSide >= abSide + caSide || caSide >= bcSide + abSide) { // сумма длин каждых двух сторон должна быть больше длины третьей стороны.
+		return 0;
 	}
-	return 0;
-	*/
+
+	float angleBeta = 0.5;
+	float multy = 2 * abSide*caSide;
+	if (multy != 0) {
+		angleBeta = (abSide*abSide + bcSide * bcSide - caSide * caSide) / multy;
+	}
+	
 
 	int dx1 = b->x - a->x;
 	int dy1 = b->y - a->y;
@@ -276,7 +275,9 @@ Dot *c = generateDot(x,y,'N');
 
 	float h = s / ab;
 
-	if (h <= 0.8 && h >= 0)
+
+
+	if ((h <= 1 && h >= 0) && (angleBeta > 0 || angleBeta < 0.7))
 	{
 		return 1;
 	}
