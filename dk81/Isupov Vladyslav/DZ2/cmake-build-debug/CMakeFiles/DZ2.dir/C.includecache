@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Work/DZ/DZ2/Square.h
+stdio.h
+-
+
+C:/Work/DZ/DZ2/main.c
+stdio.h
+-
+Square.h
+C:/Work/DZ/DZ2/Square.h
+
