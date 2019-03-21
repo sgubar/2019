@@ -28,11 +28,36 @@ Point *copyPointWithPoint(Point *aPoint)
 	return theresult;
 }
 
+Elips *createElipsWithCoordinate(int xA, int xB, int xR, int yA, int yB, int yR)
+{
+	Elips *theresult = (Elips*)malloc(sizeof(Elips));
+	if (theresult != NULL)
+	{
+		theresult->A = creatPointWithCoordinate(xA, yA);
+		theresult->B = creatPointWithCoordinate(xB, yB);
+		theresult->R = creatPointWithCoordinate(xR, yR);
+	}
+	return theresult;
+}
+
+
+Point *creatPointWithCoordinate(int x, int y)
+{
+	Point *theresult = (Point*)malloc(sizeof(Point));
+	if (theresult != NULL)
+	{
+		theresult->x = x;
+		theresult->y = y;
+	}
+	return theresult;
+}
+
+
 void printElips(Elips *aElips)
 {
 	if (aElips != NULL)
 	{
-		printf("A([%d][%d]),\nB([%d][%d]),\nR([%d][%d])\n", aElips->A->x,
+		printf("[Elips].A([%d][%d]),\nB([%d][%d]),\nR([%d][%d])\n", aElips->A->x,
 			aElips->A->y, aElips->B->x, aElips->B->y, aElips->R->x, aElips->R->y);
 	}
 }
@@ -65,4 +90,16 @@ float areaElips(Elips *aElips)
 float abc(int x)
 {
 	return (x < 0) ? (-x) : x;
+}
+
+
+float perp(Point *R, Point *B, Point *C)
+{
+	float theresult = 0.0;
+	float dx1 = (R->x - C->x);
+	float dy1 = (R->y - C->y);
+	float dx2 = (R->x - B->x);
+	float dy2 = (R->y - B->y);
+	theresult = dx1 * dx2 + dy1 * dy2;
+	return theresult;
 }
