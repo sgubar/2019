@@ -1,89 +1,90 @@
 {
 	"Trapezium":(Trapezium){
-[			"dot:{
+[			"dot":{
 				"id":(char) = "A",
 				"x":(integer) ="0",
 				"y":(integer) ="0"
 },
-			"dot:{
+			"dot":{
 				"id":(char) = "B",
-				"x":(integer) ="3",
-				"y":(integer) ="4"
+				"x":(integer) ="1",
+				"y":(integer) ="3"
 },
-			"dot:{
+			"dot":{
 				"id":(char) = "C",
-				"x":(integer) ="8",
-				"y":(integer) ="4"
+				"x":(integer) ="6",
+				"y":(integer) ="3"
 },
-			"dot:{
+			"dot":{
 				"id":(char) = "D",
-				"x":(integer) ="12",
+				"x":(integer) ="10",
 				"y":(integer) ="0"
 }],
-		"AB":5.000000,
+		"AB":3.162278,
 		"BC":5.000000,
-		"CD":5.656854,
-		"DA":12.000000,
-	"square":92.000000
+		"CD":5.000000,
+		"DA":10.000000,
+	"square":51.000000
 }
 }
 ,
 {
 	"Trapezium":(Trapezium){
-[			"dot:{
+[			"dot":{
 				"id":(char) = "A",
 				"x":(integer) ="0",
 				"y":(integer) ="0"
 },
-			"dot:{
+			"dot":{
 				"id":(char) = "B",
-				"x":(integer) ="3",
-				"y":(integer) ="9"
+				"x":(integer) ="6",
+				"y":(integer) ="8"
 },
-			"dot:{
+			"dot":{
 				"id":(char) = "C",
-				"x":(integer) ="13",
-				"y":(integer) ="9"
+				"x":(integer) ="11",
+				"y":(integer) ="8"
 },
-			"dot:{
+			"dot":{
 				"id":(char) = "D",
-				"x":(integer) ="17",
+				"x":(integer) ="20",
 				"y":(integer) ="0"
 }],
-		"AB":9.486833,
-		"BC":10.000000,
-		"CD":9.848858,
-		"DA":17.000000,
-	"square":297.000000
+		"AB":10.000000,
+		"BC":5.000000,
+		"CD":12.041595,
+		"DA":20.000000,
+	"square":296.000000
 }
 }
 ,
 {
 	"Trapezium":(Trapezium){
-[			"dot:{
+[			"dot":{
 				"id":(char) = "A",
 				"x":(integer) ="0",
 				"y":(integer) ="0"
 },
-			"dot:{
+			"dot":{
 				"id":(char) = "B",
-				"x":(integer) ="8",
-				"y":(integer) ="4"
+				"x":(integer) ="1",
+				"y":(integer) ="3"
 },
-			"dot:{
+			"dot":{
 				"id":(char) = "C",
-				"x":(integer) ="18",
-				"y":(integer) ="4"
+				"x":(integer) ="16",
+				"y":(integer) ="3"
 },
-			"dot:{
+			"dot":{
 				"id":(char) = "D",
-				"x":(integer) ="22",
+				"x":(integer) ="20",
 				"y":(integer) ="0"
 }],
-		"AB":8.944272,
-		"BC":10.000000,
-		"CD":5.656854,
-		"DA":22.000000,
-	"square":192.000000
+		"AB":3.162278,
+		"BC":15.000000,
+		"CD":5.000000,
+		"DA":20.000000,
+	"square":111.000000
 }
 }
+
