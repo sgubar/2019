@@ -10,7 +10,7 @@
 #include "dk_line_array.h"
 
 int main(int argc, const char * argv[])
-{
+{	
 	LineArray *theArray = createArray(5);
 	
 	Point A = {2,3};
@@ -19,11 +19,19 @@ int main(int argc, const char * argv[])
 	
 	addElement(theArray, &AB);
 	
+	printArray(theArray);
+	
 	A.y = 6;
 	B.x = 6;
-	
+
 	addElement(theArray, &AB);
-	
+	printArray(theArray);
+
+	B.x = 16;
+
+	addElement(theArray, &AB);
+	printArray(theArray);
+
 	FILE *theFile = fopen("/Users/sl/Desktop/test.json", "a+");
 	
 	writeArrayToJSON(theFile, theArray);

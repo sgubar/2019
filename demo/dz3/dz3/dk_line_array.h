@@ -14,8 +14,8 @@
 
 typedef struct tagLineArray
 {
-	int number;
-	int count;
+	int number; // number of elements (pre-requisited) in the array
+	int count; // the current number of elements (inserted) to the array
 	
 	Line **lines;
 }LineArray;
@@ -30,7 +30,6 @@ typedef struct tagLineArray
  			"A" : {"x" : (int), "y" : (int)},
 		 	"B" : {"x" : (int), "y" : (int)}
 		 },
- },
  		{},
  		....
 	]
@@ -46,5 +45,6 @@ void freeArray(LineArray *anArray);
 // returns index of added element OR -1 if fail
 int addElement(LineArray *anArray, Line *aLine);
 void writeArrayToJSON(FILE *aFile, LineArray *anArray);
+void printArray(LineArray *anArray);
 
 #endif /* dk_line_array_h */

@@ -93,6 +93,21 @@ void writeArrayToJSON(FILE *aFile, LineArray *anArray)
 		fprintf(aFile, "\n");
 	}
 	
-	fprintf(aFile, "],\n}");
+	fprintf(aFile, "]\n}");
 }
 
+void printArray(LineArray *anArray)
+{
+	if (NULL == anArray)
+	{
+		return;
+	}
+
+	printf("[LA]: number(%d), count(%d)", anArray->number, anArray->count);
+	printf(", lines: \n");
+	
+	for (int i = 0; i < anArray->count; i ++)
+	{
+		printLine(anArray->lines[i]);
+	}
+}
