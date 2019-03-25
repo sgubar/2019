@@ -20,31 +20,36 @@ for(int i=0;i<length;i++){
 
 
 
-void BubbleSort(int arr[],int length){
+void BubbleSort(int arr[], int length)
+{
+  for (int i = 0; i < length; i++)
 
-for(int i=0;i<length;i++){
-    for(int j=length-1;j>i;j--){
-        if(arr[j]<arr[j-1]){
-            int temp=arr[j-1];
-            arr[j-1]=arr[j];
-            arr[j]=temp;
-        }
-
-}
-}
-}
-
+    for (int j = length - 1; j > 1; j--)
+    {
+      if (arr[j - 1] > arr[j])
+      {
+        int temp = arr[j - 1];
+        arr[j - 1] = arr[j];
+        arr[j] = temp;
+      }
+    }
+  }
 
 
-void ChoiceSort(int arr[], int length_array) {
-for (int repeat_counter = 0; repeat_counter < length_array; repeat_counter++){
-    int temp = arr[0];
-    for (int element_counter = repeat_counter + 1; element_counter < length_array; element_counter++){
-        if (arr[repeat_counter] > arr[element_counter])
+
+
+void ChoiceSort(int arr[], int length)
+{
+    for (int repeat_counter = 0; repeat_counter < length; repeat_counter++)
+    {
+        int temp = arr[0];
+        for (int element_counter = repeat_counter + 1; element_counter < length; element_counter++)
         {
-        temp = arr[repeat_counter];
-        arr[repeat_counter] = arr[element_counter];
-        arr[element_counter] = temp;
+            if (arr[repeat_counter] > arr[element_counter])
+            {
+                temp = arr[repeat_counter];
+                arr[repeat_counter] = arr[element_counter];
+                arr[element_counter] = temp;
             }
         }
     }
@@ -67,3 +72,4 @@ for (int counter = 1; counter < length; counter++)
         }
 }
 }
+
