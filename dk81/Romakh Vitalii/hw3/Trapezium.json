@@ -1,0 +1,89 @@
+{
+	"Trapezium":(Trapezium){
+[			"dot:{
+				"id":(char) = "A",
+				"x":(integer) ="0",
+				"y":(integer) ="0"
+},
+			"dot:{
+				"id":(char) = "B",
+				"x":(integer) ="3",
+				"y":(integer) ="4"
+},
+			"dot:{
+				"id":(char) = "C",
+				"x":(integer) ="8",
+				"y":(integer) ="4"
+},
+			"dot:{
+				"id":(char) = "D",
+				"x":(integer) ="12",
+				"y":(integer) ="0"
+}],
+		"AB":5.000000,
+		"BC":5.000000,
+		"CD":5.656854,
+		"DA":12.000000,
+	"square":92.000000
+}
+}
+,
+{
+	"Trapezium":(Trapezium){
+[			"dot:{
+				"id":(char) = "A",
+				"x":(integer) ="0",
+				"y":(integer) ="0"
+},
+			"dot:{
+				"id":(char) = "B",
+				"x":(integer) ="3",
+				"y":(integer) ="9"
+},
+			"dot:{
+				"id":(char) = "C",
+				"x":(integer) ="13",
+				"y":(integer) ="9"
+},
+			"dot:{
+				"id":(char) = "D",
+				"x":(integer) ="17",
+				"y":(integer) ="0"
+}],
+		"AB":9.486833,
+		"BC":10.000000,
+		"CD":9.848858,
+		"DA":17.000000,
+	"square":297.000000
+}
+}
+,
+{
+	"Trapezium":(Trapezium){
+[			"dot:{
+				"id":(char) = "A",
+				"x":(integer) ="0",
+				"y":(integer) ="0"
+},
+			"dot:{
+				"id":(char) = "B",
+				"x":(integer) ="8",
+				"y":(integer) ="4"
+},
+			"dot:{
+				"id":(char) = "C",
+				"x":(integer) ="18",
+				"y":(integer) ="4"
+},
+			"dot:{
+				"id":(char) = "D",
+				"x":(integer) ="22",
+				"y":(integer) ="0"
+}],
+		"AB":8.944272,
+		"BC":10.000000,
+		"CD":5.656854,
+		"DA":22.000000,
+	"square":192.000000
+}
+}
