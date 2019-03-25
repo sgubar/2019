@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "Sort.h"
+#include <time.h>
+#define SIZE 5000
+int main()
+{
+FILE*file;
+file=fopen("laba2.txt","w");
+
+
+int arr1[SIZE];
+int arr2[SIZE];
+int arr3[SIZE];
+
+
+fillArray(arr1,SIZE);
+printArray(arr1,SIZE);
+printf("\n");
+
+
+
+clock_t begin=clock();
+BubbleSort(arr1,SIZE);
+clock_t end=clock();
+
+printArray(arr1,SIZE);
+printf("\n%.2f clocks for bubble sort\n", (double)(end-begin));
+fprintf(file,"%.2f clocks for bubble sort\n ",(double)(end-begin));
+
+
+
+fillArray(arr2,SIZE);
+printArray(arr2,SIZE);
+printf("\n");
+
+
+begin=clock();
+ChoiceSort(arr2,SIZE);
+end=clock();
+
+printArray(arr1,SIZE);
+printf("\n%.2f clocks for choice sort\n", (double)(end-begin));
+fprintf(file,"%.2f clocks for choice sort \n",(double)(end-begin));
+
+
+fillArray(arr3,SIZE);
+printArray(arr3,SIZE);
+printf("\n");
+
+
+begin=clock();
+InsertSort(arr3,SIZE);
+end=clock();
+
+printArray(arr3,SIZE);
+printf("\n%.2f clocks for insert sort\n", (double)(end-begin));
+fprintf(file,"%.2f clocks for insert sort\n",(double)(end-begin));
+
+
+
+
+fclose(file);
+return 0;
+}
