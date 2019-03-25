@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
-#define lenght 1000
+#define lenght 10
 
 void fillArray()
 	{
@@ -62,7 +62,7 @@ void writeArray(char *array)
 	
 	
 
-char bubbleSort(char *array1)
+void bubbleSort(char *array1)
 	{
 		int i, j;
 		char temp;
@@ -79,10 +79,9 @@ char bubbleSort(char *array1)
 							}
 					}
 			}
-		return *array1;
 	}
 	
-char selectionSort(char *array2)
+void selectionSort(char *array2)
 	{
 		int i, j;
 		char temp;
@@ -103,24 +102,25 @@ char selectionSort(char *array2)
 				array2[i] = array2[minIndex];
 				array2[minIndex] = temp;
 			}
-		return *array2;
 	}
-	
-char insertionSort(char *array3)
+
+void insertionSort(char *array3)
 {
 	int i, j;
 	char temp;
 	
-	for (i = 1; i < lenght; i++)
+	for (i = 0; i < lenght; i++)
 	{
 		temp = array3[i];
-		j = i;
-		while (j > 0 && array3[j-1] <= temp)
+		j = i-1;
+		while (j >= 0 && array3[j] < temp)
 		{
-			array3[j] = array3[j-1];
-			--j;
+			array3[j+1] = array3[j];
+			j--;
 		}
 
-		array3[j] = temp;
+		array3[j+1] = temp;
 	}
+
 }
+

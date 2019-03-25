@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
 	char *array3 = getArray();
 	
 	clock_t inStart = clock();
-	*array1 = bubbleSort(array1);
+	bubbleSort(array1);
 	clock_t inEnd = clock();
 	printf("Time of bubble sorting: %f seconds\nTime of bubble sorting: %d steps\n\n",
 		(double) (inEnd-inStart)/CLOCKS_PER_SEC, inEnd-inStart);
@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
 
 
 	inStart = clock();
-	*array2 = selectionSort(array2);
+	selectionSort(array2);
 	inEnd = clock();
 	printf("Time of selection sorting: %f seconds\nTime of selection sorting: %d steps\n\n",
 		(double) (inEnd-inStart)/CLOCKS_PER_SEC, inEnd-inStart);
@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
 	
 	
 	inStart = clock();
-	*array3 = insertionSort(array3);
+	insertionSort(array3);
 	inEnd = clock();
 	printf("Time of insertion sorting: %f seconds\nTime of insertion sorting: %d steps\n\n",
 		(double) (inEnd-inStart)/CLOCKS_PER_SEC, inEnd-inStart);

@@ -4,16 +4,17 @@
 
 FILE *fo;
 
-typedef struct
+/*typedef struct
 	{
 	int timeOfExecution;
 	int *result;
 	}Result;
+*/
 
 void fillArray();
-char bubbleSort(char *array1);
-char selectionSort(char *array2);
-char insertionSort(char *array);
+void bubbleSort(char *array1);
+void selectionSort(char *array2);
+void insertionSort(char *array);
 char *getArray();
 void writeArray(char *array);
 
