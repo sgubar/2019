@@ -12,8 +12,8 @@ Square *createSquare(Point *A, Point *B)
 			theResult = (Square *)malloc(sizeof(Square));
 			if (NULL != theResult)
 			{
-				theResult->A = copyPointWithPoint(A);
-				theResult->B = copyPointWithPoint(B);
+				theResult->A = createPoint(A);
+				theResult->B = createPoint(B);
 			}
 		}
 		return theResult;
@@ -24,8 +24,8 @@ Square *createSquareWithArrayOfPoint(Point *arrayOfPoint)
 		Square *theResult = (Square*)malloc(sizeof(Square));
 		if (theResult != NULL)
 			{
-				theResult->A = copyPointWithPoint(&arrayOfPoint[0]);
-				theResult->B = copyPointWithPoint(&arrayOfPoint[1]);
+				theResult->A = createPoint(&arrayOfPoint[0]);
+				theResult->B = createPoint(&arrayOfPoint[1]);
 			}
 		return theResult;
 	}
@@ -54,7 +54,7 @@ Point *createPointWithCoordinate(int x, int y)
 		return theResult;
 	}
 
-Point *copyPointWithPoint(Point *aPoint)
+Point *createPoint(Point *aPoint)
 	{
 		Point *theResult = (Point *)malloc(sizeof(Point));
 		if (NULL != theResult)

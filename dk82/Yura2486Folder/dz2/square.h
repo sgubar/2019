@@ -18,7 +18,7 @@ typedef struct tagSquare
 Square *createSquare(Point *A, Point *B);
 Square *createSquareWithCoordinate(int xA, int yA, int xB, int yB);
 Point *createPointWithCoordinate(int x, int y);
-Point *copyPointWithPoint(Point *aPoint);
+Point *createPoint(Point *aPoint);
 Square *createSquareWithArrayOfPoint(Point *arrayOfPoint);
 
 void destroySquare(Square *aSquare);
