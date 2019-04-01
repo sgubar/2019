@@ -23,9 +23,9 @@ int main()
 	{
 		printf("Wrong data! 'C' shouldn`t be '0'\n");
 		printf("Try again\n");
-		scanf("%i", &a);
+		scanf("%i", &c);
 	}
-	float res = module(a*c - b) / power(c, 3);
+	float res = (float)module(a*c - b) / (float)power(c, 3) * (float)sum_of_2_pow_d(a, 0);
 	printf("The result is: %f", res);
 	system("pause");
 	return 0;
