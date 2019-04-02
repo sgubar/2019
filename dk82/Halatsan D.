@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include "pch.h"
+#include <iostream>
+float mypow(float digit, float power) {
+	int count;
+	float digit2=digit;
+	if (power == 0) {
+		digit = 1;
+		return digit;
+	}
+	if (power < 0) {
+		digit = 1 / digit;
+		digit2 = 1 / digit2;
+		power = power * -1;
+	}
+	for (count = 0; count < power - 1; count++) {
+			digit = digit*digit2;
+			
+	}		
+	return digit;
+	
+}
+float fact(int x) {
+	int v = 1;
+	if (x > 0) {
+		for (int i = 1; i <= x; i++) {
+			v = i * v;
+		}
+		return v;
+	}
+	else if (x == 0) {
+		return v;
+	}
+	else {
+		return -1;
+	}
+}
+int main()
+{	float Q=0, A=0, B=0, a=0, b=0, c=0, C=0;
+	printf("This program calculates the example Q=(A^2+B^2)/(B+5^C)+B!.\nVariable B can not be lower then 0.\nPress \"Enter\" button after typeing ever variable.\n");
+	printf("Type A, B, C\n");
+	scanf_s("%f,%f,%f,",&A,&B,&C);
+	A = mypow(A, 2);
+	b = mypow(B, 2);
+	C = mypow(5, C);
+	B = fact(B);
+	if (B==-1)
+	{
+		printf("Error");
+		return 0;
+	}
+	Q = (A + b)/(c + C) + B;
+	printf("Q=%f",Q);
+	return 0;
+}
