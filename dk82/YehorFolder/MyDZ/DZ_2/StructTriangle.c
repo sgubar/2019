@@ -64,11 +64,14 @@ Point *CopyPointWithPoint(Point *aPoint)
 
 Triangle *CreateTriangleByPoints(Point* A,Point* B, Point* C)
 {
+      if (0 == isValidate(A, B, C))
+      {
+        return NULL;
+      }
 
          Triangle* theResult=NULL;
 
-        if(NULL!=A && NULL!=B && NULL!=C)
-        {
+
             theResult=(Triangle*)malloc(sizeof(Triangle));
 
             if(theResult!=NULL)
@@ -77,8 +80,7 @@ Triangle *CreateTriangleByPoints(Point* A,Point* B, Point* C)
             theResult->B=CopyPointWithPoint(B);
             theResult->C=CopyPointWithPoint(C);
             }
-        }
-     return theResult;
+      return theResult;
 }
 
 
@@ -98,16 +100,17 @@ double TriangleSquare(Triangle* aTriangle)
 
     }
 
-   if(AB+BC<AC || AB+AC<BC || BC+AC<AB)
+   if(AB+BC<=AC || AB+AC<=BC || BC+AC<=AB )
     {
-        printf("Invalid triangle points");
+        printf("\nInvalid triangle points!!!\n");
         destroyTriangle(aTriangle);
         return -1;
     }
+    else{
         double HalfPerimetr=(AB+BC+AC)/2;
         Square=(double)sqrt((HalfPerimetr-AB)*(HalfPerimetr-AC)*(HalfPerimetr-BC)*HalfPerimetr);
         return Square;
-
+    }
 }
 
 
@@ -136,4 +139,25 @@ void printTriangle(Triangle* aTriangle)
     printf("[%d;%d] ",aTriangle->A->x,aTriangle->A->y);
     printf("[%d;%d] ",aTriangle->B->x,aTriangle->B->y);
     printf("[%d;%d] ",aTriangle->C->x,aTriangle->C->y);
+}
+
+
+int isValidate(Point* A,Point* B,Point* C){
+
+    double AB=0,BC=0,AC=0;
+
+    if(NULL!=A && NULL!=B && NULL!=C){
+        return 0;
+    }
+
+    AB=sqrt((double)pow(B->x-A->x,2)+(double)pow(B->y-A->y,2));
+
+    BC=sqrt((double)pow(C->x-B->x,2)+(double)pow(C->y-B->y,2));
+
+    AC=sqrt((double)pow(C->x-A->x,2)+(double)pow(C->y-A->y,2));
+
+
+    int result = (AB+BC<=AC || AB+AC<=BC || BC+AC<=AB) ? 0 : 1;
+
+    return result;
 }
