@@ -1,4 +1,4 @@
-#include <stdlib.h>
+﻿#include <stdlib.h>
 #include "ellipse.h"
 #include "eArray.h"
 #include <Windows.h>
@@ -15,41 +15,45 @@ int main(int argc, char const* argv[])
 	/*point *mass[3] = { &a, &b, &c };
 	point **ptr = mass;*/
 
-	Elips* arr = createElipswithArray(mass);//??????? ??????
+	Elips* arr = createElipswithArray(mass);//создаем элипсы
 	Elips* a = createElips(&A, &B, &R);//
-	Elips* b = createElipsWithCoordinate(2, 1, 2, 4, 6, 4);
+	Elips* b = createElipsWithCoordinate(6, 3, 8, 1, 8, 6);
 
-	area[0] = areaElips(a);//??????? ??????? ???????
+	area[0] = areaElips(a);//считаем площади элипсов
 	area[1] = areaElips(b);
 	area[2] = areaElips(arr);
 
 
-	printElips(a);//??????? ??????
-	printElips(arr);
+	printElips(a);//выводим элипсы и их площадь
+	printf("area[a]=%f\n\n", area[0]);
+	if (arr != NULL)
+	{
+		printElips(arr);
+		printf("area[arr]=%f\n\n", area[2]);
+	}
+	else printf("ellipse Isn't created\n\n");
 	printElips(b);
+	printf("area[b]=%f\n\n", area[1]);
 	
-	addElement(theArray, a);//????????? ? ?????? ?????
+	addElement(theArray, a);//добавляем в массив элипс
 	printAr(theArray);
-	printf("area[a]=%f\n", area[0]);
-	
 
 	addElement(theArray, b);
 	printAr(theArray);
-	printf("area[b]=%f\n", area[1]);
-
 	
 	addElement(theArray, arr);
-	printf("area[arr]=%f\n", area[2]);
+	printAr(theArray);
 
+	addElInd(theArray, b, 1);
+	printAr(theArray);
 
 	FILE* thefile = fopen("test.json", "a+");
 	if (thefile != NULL)
-		printf("file successfully created\n");
+		printf("file successfully created\n\n");
 	else
 		return 0;
 
 	writeArrayToJSON(thefile, theArray);
-
 	fflush(thefile);
 	fclose(thefile);
 	freeArray(theArray);

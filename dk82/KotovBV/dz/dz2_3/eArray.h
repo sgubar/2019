@@ -13,6 +13,7 @@ typedef struct ArrayOfEllipse
 
 eArr *createArray(int number);
 void freeArray(eArr *anArray);
-int addElement(eArr *anArray, Elips *aLine);
+int addElement(eArr* anArray, Elips* aElips);
 void writeArrayToJSON(FILE* aFile, eArr* anArray);
 void printAr(eArr *anArray);
+int addElInd(eArr* anArray, Elips* aElips, int numb);

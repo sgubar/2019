@@ -133,15 +133,19 @@ float abc(int x)
 }
 
 
-float perp(Point *R, Point *B, Point *C)
+float perp(Point *R, Point *A, Point *B)
 {
 	float theresult = 0.0;
-	float dx1 = (R->x - C->x);
-	float dy1 = (R->y - C->y);
-	float dx2 = (R->x - B->x);
-	float dy2 = (R->y - B->y);
-	theresult = dx1 * dx2 + dy1 * dy2;
-	return theresult;
+	if (((R->x - B->x) != 0.0 && (R->y - B->y) != 0.0) || ((R->x - A->x) != 0.0 && (R->y - A->y) != 0.0))
+	{
+		float dx1 = (R->x - B->x);
+		float dy1 = (R->y - B->y);
+		float dx2 = (R->x - A->x);
+		float dy2 = (R->y - A->y);
+		theresult = dx1 * dx2 + dy1 * dy2;
+		return theresult;
+	}
+	else return 1;
 }
 
 
@@ -152,7 +156,6 @@ void writePointToJSON(FILE* aFile, Point* aPoint)
 	{
 		return;
 	}
-
 	fprintf(aFile, "{\"x\" : %d, \"y\" : %d}", aPoint->x, aPoint->y);
 }
 
