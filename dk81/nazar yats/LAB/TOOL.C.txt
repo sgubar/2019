@@ -1,0 +1,54 @@
+
+#include <stdio.h>
+#include "tool.h"
+
+int step_A(int A)
+{
+  int result;
+
+  result = A * A;
+
+  return result;
+}
+
+int step_B(int B)
+{
+  int result;
+
+  result = B * B;
+
+  return result;
+}
+
+int factorial(int B)
+{
+  int result=1;
+  int i;
+
+  if (B < 0)
+    printf("Use B > 0");
+
+  for (i = 1; i <= B; i++) {
+    result = result * i;
+  }
+
+  return result;
+}
+
+int step_c(int value, int C)
+{
+  int result = 1;
+  int num_of_step;
+    
+  for (num_of_step = 0; num_of_step <= C; num_of_step++)
+  {
+    result = result * value;
+  }
+  return result;
+}
+
+int formula(int A, int B, int C)
+{
+  int result;
+  result = ((step_A(A) + step_B(B)) / (B + step_c(5, C))) + factorial(B);
+}
