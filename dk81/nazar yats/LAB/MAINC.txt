@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include "tool.h"
+
+int main(int argc, char * argv)
+{
+  int A, B, C;
+  
+  printf("Enter A: ");
+  scanf_s("%i", &A);
+  printf("\n");
+
+  printf("Enter B: ");
+  scanf_s("%i", &B);
+  printf("\n");
+
+  printf("Enter C: ");
+  scanf_s("%i", &C);
+  printf("\n");
+
+  int result = formula (A, B, C);
+  printf("Result: %i\n",result);
+
+  system("pause");
+}
