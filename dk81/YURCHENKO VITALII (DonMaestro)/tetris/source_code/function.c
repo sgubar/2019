@@ -13,7 +13,6 @@ void clrscr()
 void out_surface()
 {
     clrscr();
-    clrscr();
 
 
     printf("\n               ");
@@ -38,16 +37,13 @@ void out_surface()
 
 
 
-void fall_singles()
+void fall_singles(int line_start)
 {
-    for(int line = max_line - 2; line >= 0; line--)
+    for(int line = line_start; line >= 3; line--)
         for(int col = 1; col < max_col - 1; col++)
         {
-            if(Surface.surface[line][col] == 0 && Surface.surface[line - 1][col] == 1)
-            {
-                Surface.surface[line][col] = 1;
-                Surface.surface[line - 1][col] = 0;
-            }
+            Surface.surface[line][col] = Surface.surface[line - 1][col];
+            Surface.surface[line - 1][col] = 0;
         }
 }
 
@@ -66,18 +62,18 @@ int rules_game()
 
     for(int col = 1; col < max_col - 2; col++)
     {
-        if(Surface.surface[3][col] == 1)
+        if(Surface.surface[2][col] == 1)
             return 1;
     }
 
 
-    for(int line = max_line - 2; line >= 0; line--)
+    for(int line = max_line - 2; line >= 3; line--)
         for(int col = 1; col < max_col - 1 && Surface.surface[line][col] == 1; col++)
         {
             if(col == max_col - 2)
             {
                 delete_line(line);
-                fall_singles();
+                fall_singles(line);
             }
 
         }

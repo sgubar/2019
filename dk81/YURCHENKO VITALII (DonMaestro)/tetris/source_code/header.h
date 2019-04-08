@@ -4,9 +4,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <time.h>
 
 #define max_line 20
-#define max_col 10
+#define max_col 12
 
 
 struct surface_game

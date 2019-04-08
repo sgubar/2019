@@ -19,7 +19,7 @@ void add_figu()
     int figure_5[8] = {0, 2, 2, 0, 0, 2, 2, 0};
     int figure_6[8] = {0, 0, 0, 0, 2, 2, 2, 2};
 
-
+    srand(time(NULL));
     switch (rand()/(RAND_MAX / 7)) {
     case 0:
         figu_pri(figure_0);
