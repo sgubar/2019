@@ -1,0 +1,8 @@
+
+#include <stdio.h>
+
+int step_A(int A);
+int step_B(int B);
+int factorial(int B);
+int step_c(int value, int C);
+int formula(int A, int B, int C);
