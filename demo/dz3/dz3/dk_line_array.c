@@ -111,3 +111,29 @@ void printArray(LineArray *anArray)
 		printLine(anArray->lines[i]);
 	}
 }
+
+void sort_simple(LineArray *anArray)
+{
+	if (NULL == anArray || anArray->count == 0)
+	{
+		return ;
+	}
+
+	for (int theOut = anArray->count - 1; theOut > 1; theOut --)
+	{
+		for (int theIn = 0; theIn < theOut; theIn ++)
+		{
+//			if (anArray[theIn] > anArray[theIn + 1])
+			if (lenghLine(anArray->lines[theIn]) > lenghLine(anArray->lines[theIn + 1]))
+			{
+//				int theTmp = anArray[theIn];
+//				anArray[theIn] = anArray[theIn + 1];
+//				anArray[theIn + 1] = theTmp;
+
+				Line *theTmp = anArray->lines[theIn];
+				anArray->lines[theIn] = anArray->lines[theIn + 1];
+				anArray->lines[theIn + 1] = theTmp;
+			}
+		}
+	}
+}

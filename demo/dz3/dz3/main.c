@@ -11,7 +11,7 @@
 
 int main(int argc, const char * argv[])
 {	
-	LineArray *theArray = createArray(5);
+	LineArray *theArray = createArray(10);
 	
 	Point A = {2,3};
 	Point B = {4,5};
@@ -27,11 +27,44 @@ int main(int argc, const char * argv[])
 	addElement(theArray, &AB);
 	printArray(theArray);
 
-	B.x = 16;
+	B.x = 28;
+
+	addElement(theArray, &AB);
+	printArray(theArray);
+	B.x = 17;
 
 	addElement(theArray, &AB);
 	printArray(theArray);
 
+	B.x = 18;
+
+	addElement(theArray, &AB);
+	printArray(theArray);
+
+	B.x = 19;
+
+	addElement(theArray, &AB);
+	printArray(theArray);
+	B.x = 20;
+
+	addElement(theArray, &AB);
+	printArray(theArray);
+	B.x = 21;
+
+	addElement(theArray, &AB);
+	printArray(theArray);
+	B.x = 22;
+
+	addElement(theArray, &AB);
+	printArray(theArray);
+	B.x = 23;
+
+	addElement(theArray, &AB);
+	printArray(theArray);
+	
+	sort_simple(theArray);
+	printArray(theArray);
+	
 	FILE *theFile = fopen("/Users/sl/Desktop/test.json", "a+");
 	
 	writeArrayToJSON(theFile, theArray);

@@ -46,5 +46,6 @@ void freeArray(LineArray *anArray);
 int addElement(LineArray *anArray, Line *aLine);
 void writeArrayToJSON(FILE *aFile, LineArray *anArray);
 void printArray(LineArray *anArray);
+void sort_simple(LineArray *anArray);
 
 #endif /* dk_line_array_h */
