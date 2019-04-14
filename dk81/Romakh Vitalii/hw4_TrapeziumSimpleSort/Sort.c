@@ -15,7 +15,7 @@ void bubbleSort(void *base, size_t baseSize, size_t elemSize, int (*comparator)(
 
 	for (int i = 0; i < baseSize - 1 ; i++)
 	{
-		for (int j = i; j < baseSize - 1; j++)
+		for (int j = 0; j < baseSize - i - 1; j++)
 		{
 			//printf(" i = %i, j = %i\n",i, j);
 			if ((*comparator)(base,j,j+1) == 1) {
@@ -27,6 +27,7 @@ void bubbleSort(void *base, size_t baseSize, size_t elemSize, int (*comparator)(
 		}
 	}
 }
+
 
 
 void selectionSort(void *base, size_t baseSize, size_t elemSize, int(*comparator)(void *base, int indexA, int indexB)) {
