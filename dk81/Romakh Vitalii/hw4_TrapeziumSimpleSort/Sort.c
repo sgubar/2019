@@ -1,5 +1,5 @@
 #include "Sort.h"
-#include "Figure.h"
+
 
 void bubbleSort(void *base, size_t baseSize, size_t elemSize, int (*comparator)(void *base, int indexA, int indexB)) {
 	
