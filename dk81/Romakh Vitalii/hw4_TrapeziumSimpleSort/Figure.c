@@ -1,5 +1,5 @@
-
-
+#include <stdio.h>
+#include "Figure.h"
 
 Dot *createDot(int xCoor, int yCoor) {
 	Dot *d = (Dot *)malloc(sizeof(Dot));
