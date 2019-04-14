@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include "Figure.h"
+
+
 
 Dot *createDot(int xCoor, int yCoor) {
 	Dot *d = (Dot *)malloc(sizeof(Dot));
@@ -10,7 +10,7 @@ Dot *createDot(int xCoor, int yCoor) {
 	return d;
 }
 
-Dot *inputDot(int xCoor, int yCoor) { //создание точки вручную через консоль
+Dot *inputDot(int xCoor, int yCoor) { //Г±Г®Г§Г¤Г Г­ГЁГҐ ГІГ®Г·ГЄГЁ ГўГ°ГіГ·Г­ГіГѕ Г·ГҐГ°ГҐГ§ ГЄГ®Г­Г±Г®Г«Гј
 	Dot *d = (Dot *)malloc(sizeof(Dot));
 
 	int x = xCoor;
@@ -32,7 +32,7 @@ Dot *inputDot(int xCoor, int yCoor) { //создание точки вручную через консоль
 	return d;
 }
 
-Dot *generateDot(int x, int y, char id) { //Конструктор точки
+Dot *generateDot(int x, int y, char id) { //ГЉГ®Г­Г±ГІГ°ГіГЄГІГ®Г° ГІГ®Г·ГЄГЁ
 	Dot *d = (Dot *)malloc(sizeof(Dot));
 
 	d->x = x;
@@ -42,7 +42,7 @@ Dot *generateDot(int x, int y, char id) { //Конструктор точки
 	return d;
 }
 
-Trapezium *generateTrapezium(int radius) {  //Генерация трапеции, разброс точок с расстоянием до радиуса
+Trapezium *generateTrapezium(int radius) {  //ГѓГҐГ­ГҐГ°Г Г¶ГЁГї ГІГ°Г ГЇГҐГ¶ГЁГЁ, Г°Г Г§ГЎГ°Г®Г± ГІГ®Г·Г®ГЄ Г± Г°Г Г±Г±ГІГ®ГїГ­ГЁГҐГ¬ Г¤Г® Г°Г Г¤ГЁГіГ±Г 
 	time_t t;
 	srand((unsigned)time(&t));
 	Trapezium *trap = (Trapezium *)malloc(sizeof(Trapezium));
@@ -55,7 +55,7 @@ Trapezium *generateTrapezium(int radius) {  //Генерация трапеции, разброс точок 
 	return trap;
 }
 
-Trapezium *createTrapezium() { // создание Трапеции вручную через консоль
+Trapezium *createTrapezium() { // Г±Г®Г§Г¤Г Г­ГЁГҐ Г’Г°Г ГЇГҐГ¶ГЁГЁ ГўГ°ГіГ·Г­ГіГѕ Г·ГҐГ°ГҐГ§ ГЄГ®Г­Г±Г®Г«Гј
 	Trapezium *trap = (Trapezium *)malloc(sizeof(Trapezium));
 
 
@@ -94,12 +94,12 @@ Trapezium *createTrapezium() { // создание Трапеции вручную через консоль
 	return trap;
 }
 
-void showDot(Dot *d) { //Вывести точку на экран
+void showDot(Dot *d) { //Г‚Г»ГўГҐГ±ГІГЁ ГІГ®Г·ГЄГі Г­Г  ГЅГЄГ°Г Г­
 	printf("x = %i\n", d->x);
 	printf("y = %i\n", d->y);
 }
 
-void showTrapezium(Trapezium *t) { //Вывести данные про фигуру на экран
+void showTrapezium(Trapezium *t) { //Г‚Г»ГўГҐГ±ГІГЁ Г¤Г Г­Г­Г»ГҐ ГЇГ°Г® ГґГЁГЈГіГ°Гі Г­Г  ГЅГЄГ°Г Г­
 
 	printf("\n---------------------------------------------\n");
 
@@ -120,11 +120,11 @@ void showTrapezium(Trapezium *t) { //Вывести данные про фигуру на экран
 	printf("\n");
 }
 
-void deleteDot(Dot *dot) { // удаление точки
+void deleteDot(Dot *dot) { // ГіГ¤Г Г«ГҐГ­ГЁГҐ ГІГ®Г·ГЄГЁ
 	free(dot);
 }
 
-void deleteTrapezium(Trapezium *trapezium) {// удаление трапеции
+void deleteTrapezium(Trapezium *trapezium) {// ГіГ¤Г Г«ГҐГ­ГЁГҐ ГІГ°Г ГЇГҐГ¶ГЁГЁ
 	deleteDot(trapezium->leftBottomCorner);
 	deleteDot(trapezium->leftTopCorner);
 	deleteDot(trapezium->rightTopCorner);
@@ -133,7 +133,7 @@ void deleteTrapezium(Trapezium *trapezium) {// удаление трапеции
 	free(trapezium);
 }
 
-float calculateLineLength(Dot *a, Dot *b) {// расчёт длины отрезка между двумя точками
+float calculateLineLength(Dot *a, Dot *b) {// Г°Г Г±Г·ВёГІ Г¤Г«ГЁГ­Г» Г®ГІГ°ГҐГ§ГЄГ  Г¬ГҐГ¦Г¤Гі Г¤ГўГіГ¬Гї ГІГ®Г·ГЄГ Г¬ГЁ
 	int deltaX = b->x - a->x;
 	int deltaY = b->y - a->y;
 
@@ -142,7 +142,7 @@ float calculateLineLength(Dot *a, Dot *b) {// расчёт длины отрезка между двумя т
 }
 
 
-float calculateTrapeziumSquare(Trapezium *trap) {//Расчет площади трапеции
+float calculateTrapeziumSquare(Trapezium *trap) {//ГђГ Г±Г·ГҐГІ ГЇГ«Г®Г№Г Г¤ГЁ ГІГ°Г ГЇГҐГ¶ГЁГЁ
 	float a = trap->leftBottomCorner->x * trap->leftTopCorner->y + trap->leftTopCorner->x * trap->rightTopCorner->y + trap->rightTopCorner->x * trap->rightBottomCorner->y + trap->rightBottomCorner->x * trap->leftBottomCorner->y;
 	float b = trap->leftBottomCorner->y * trap->leftTopCorner->x + trap->leftTopCorner->y * trap->rightTopCorner->x + trap->rightTopCorner->y * trap->rightBottomCorner->x + trap->rightBottomCorner->y * trap->leftBottomCorner->x;
 
