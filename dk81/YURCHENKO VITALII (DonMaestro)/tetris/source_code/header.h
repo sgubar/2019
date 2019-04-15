@@ -6,7 +6,8 @@
 #include <unistd.h>
 #include <time.h>
 
-#define max_line 20
+
+#define max_line 24
 #define max_col 12
 
 
@@ -19,6 +20,11 @@ struct surface_game
 
 void clrscr();
 void out_surface();
+
+
+int job_with_line();
+
+void add_point(int *point, int delet_line);
 
 int rules_game();
 

@@ -17,7 +17,7 @@ struct figure_coordinates
 
 void add_figu();
 
-void wheeling_figu();
+int wheeling_figu();
 
 int bias_figu_left();
 int bias_figu_rite();

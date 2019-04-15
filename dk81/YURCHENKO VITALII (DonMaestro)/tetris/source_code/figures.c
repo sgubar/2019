@@ -19,7 +19,8 @@ void add_figu()
     int figure_5[8] = {0, 2, 2, 0, 0, 2, 2, 0};
     int figure_6[8] = {0, 0, 0, 0, 2, 2, 2, 2};
 
-    srand(time(NULL));
+    //srand(time(NULL));
+    //rand()/(RAND_MAX / 7)
     switch (rand()/(RAND_MAX / 7)) {
     case 0:
         figu_pri(figure_0);
@@ -59,6 +60,27 @@ int audit_figu_rite()
 }
 
 
+
+
+int figure_line()
+{
+    for(int line = (max_line - 1); line >= 0; line--)
+        for(int col = 0; col < max_col; col++)
+            if(Surface.surface[line][col] == 2)
+            {
+                if(Surface.surface[line][col + 1] == 1)
+                    return -3;
+                else if(Surface.surface[line][col + 2] == 1)
+                    return -2;
+
+                if(Surface.surface[line][col - 1] == 1)
+                    return 0;
+            }
+    return -1;
+}
+
+
+
 void search_left_ground()
 {
     Figu_coord.point_col_e = 0;
@@ -95,7 +117,7 @@ void search_left_ground()
 }
 
 
-void wheeling_figu()
+int wheeling_figu()
 {
 
     search_left_ground();
@@ -106,29 +128,58 @@ void wheeling_figu()
     int massif[max_line_m][max_col_m];
 
     int left_shift = 0;
+    int top_shift = 0;
 
 
-    if(audit_figu_rite() == 1 && max_col_m < max_line_m)
+    if(audit_figu_rite() == 1 && (max_line_m - max_col_m) == 1)
         left_shift = -1;
+    else if((max_line_m - max_col_m) == -3)
+        left_shift = 1;
+    else if((max_line_m - max_col_m) == 3)
+        left_shift = figure_line();
 
-    //printf("\n%i   %i\n", max_line_m, max_col_m);
-    //printf("\n%i   %i\n", Figu_coord.point_line, Figu_coord.point_col);
-    //printf("\n%i   %i\n", Figu_coord.point_line_e, Figu_coord.point_col_e);
+
+
+
+///////////////////////////////////////////////////////massif[][] = {0}
     for(int line = 0; line < max_line_m; line++)
         for(int col = 0; col < max_col_m; col++)
-        {
-            massif[line][col] = Surface.surface[line + Figu_coord.point_line][col + Figu_coord.point_col];
-            Surface.surface[line + Figu_coord.point_line][col + Figu_coord.point_col] = 0;
-            //printf("%i", massif[line][col]);
-        }
+            massif[max_line_m][max_col_m] = 0;
 
+    for(int line = 0; line < max_line_m; line++)
+        for(int col = 0; col < max_col_m; col++)
+            if(Surface.surface[line + Figu_coord.point_line][col + Figu_coord.point_col] == 2)
+                massif[line][col] = Surface.surface[line + Figu_coord.point_line][col + Figu_coord.point_col];
+
+
+
+
+    ///////////////////////////////////////////////////////////////////////check
     for(int line = 0, col_m  = 0; line < max_col_m; line++, col_m++)
         for(int col = 0, line_m = max_line_m - 1; col < max_line_m; col++, line_m--)
         {
-            Surface.surface[line + Figu_coord.point_line]
-                    [col + Figu_coord.point_col + left_shift] = massif[line_m][col_m];
+            if(massif[line_m][col_m] == 2 &&
+                    Surface.surface[line + Figu_coord.point_line + top_shift][col + Figu_coord.point_col + left_shift] == 1)
+                return 1;
         }
 
+
+
+    /////////////////////////////////////////////////delete figure
+    for(int line = 0; line < max_line_m; line++)
+        for(int col = 0; col < max_col_m; col++)
+            if(Surface.surface[line + Figu_coord.point_line][col + Figu_coord.point_col] == 2)
+                Surface.surface[line + Figu_coord.point_line][col + Figu_coord.point_col] = 0;
+
+    /////////////////////////////////////////////////////////////////////add turn figure
+    for(int line = 0, col_m  = 0; line < max_col_m; line++, col_m++)
+        for(int col = 0, line_m = max_line_m - 1; col < max_line_m; col++, line_m--)
+        {
+            if(massif[line_m][col_m] == 2)
+                Surface.surface[line + Figu_coord.point_line + top_shift]
+                        [col + Figu_coord.point_col + left_shift] = massif[line_m][col_m];
+        }
+    return 0;
 }
 
 

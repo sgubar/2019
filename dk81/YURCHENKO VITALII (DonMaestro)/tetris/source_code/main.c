@@ -8,97 +8,112 @@
 
 #include <pthread.h>
 
-//#include <conio.h>
-
 #include "figures.h"
 #include "header.h"
-
-//char input;
-
 
 
 int getch(void);
 
 
-
-
 void *threadFunc(void *resolution)
 {
 
-    long int ttime;
-    int numb = 0;
-    int numb_out;
+    long int clock_fun = 0;
+    long int clock_out_sur = 0;
+    clock_t clock_now;
 
-    int time_stop = 60000;
+
+    int time_stop = 500000;
+
+
+    int numb_figure_now = 0;
+    int numb_figure = 0;
+
+
+    time_t times;
+    int cadr_in_sec = 0;
+    int FPS = 0;
+
+
+    int point = 0;
 
 
     int *addr = (int *)resolution;;
+
+    *(addr + 1) = 0;
+
+
     int go = 0;
-
-    *(addr + 1) = 1;
-
     while (!go)
-    {
+    {   
+        clock_now = clock();
 
-        for(int number = 0; number < 8; number++)
+        //////////////////////////////////////////////// synchronization
+        while(*addr == 1)
+            *(addr + 1) = 1;
+        *(addr + 1) = 0;
+        ///////////////////////////////////////////////
+
+
+        if( ( clock_now - clock_out_sur ) > 70000)
         {
 
-
             out_surface();
-            printf("\n%i\n", numb_out);
+            printf(" %i    ", point);
+            printf("\t%i   ", numb_figure_now);
+            printf("\tFPS: %i\n", FPS);
 
-            if(ttime == time(NULL))
+            if((time(NULL) - times) >= 1)
             {
-                numb++;
+                times = time(NULL);
+                FPS = cadr_in_sec;
+                cadr_in_sec = 0;
             }
             else
-            {
-                numb_out = numb;
-                numb = 0;
-                ttime = time(NULL);
-            }
+                cadr_in_sec++;
+
+            //////////////////////////
+            clock_out_sur = clock_now;
+            //////////////////////////
+        }
 
 
 
-
-            if(numb_out > 13)
-                time_stop = time_stop + 1000;
-            if(numb_out < 11)
-                time_stop = time_stop - 1000;
-
-
-
-            usleep(time_stop);
-
-
-
-//////////////////////////////////////////////// synchronization
-            while(*addr == 1)
-            {
-                *(addr + 1) = 1;
-                usleep(10000);
-            }
-            *(addr + 1) = 0;
-///////////////////////////////////////////////
-
-
+        if( ( clock_now - clock_fun ) > time_stop)
+        {
 
             if(*addr == 66 || rules_game() == 1)
             {
                 //clrscr();
                 *(addr + 1) = 66;
-                printf("     GAME OVER\n");
-                printf("to exit click on 'q'\n");
+                printf("\n                ");
+                printf("      GAME OVER\n");
                 pthread_exit(NULL);
             }
-        }
+
+            if(fall_figu_surf() == 1)
+            {
+                save_changes();
+                add_point(&point, job_with_line());
+                add_figu();
+                numb_figure_now++;
 
 
 
-        if(fall_figu_surf() == 1)
-        {
-            save_changes();
-            add_figu();
+            }
+
+
+            if( ( numb_figure_now - numb_figure ) == 1)
+            {
+                if(time_stop >= 70000)
+                    time_stop = time_stop - 10000;
+
+                numb_figure = numb_figure_now;
+            }
+
+            ///////////////////////
+            clock_fun = clock_now;
+            //////////////////////
         }
 
     }
@@ -114,9 +129,11 @@ void *boot_command(void *resolution)
     int *addr = (int *)resolution;
 
     char input;
+
     int go = 0;
     while(!go)
     {
+
         *addr = 0;
         input = getch();
         *addr = 1;
@@ -127,11 +144,9 @@ void *boot_command(void *resolution)
 
 
 /////////////////////////////////  synchronization
-        do
-        {usleep(10000);}
+        do{}
         while(*(addr + 1) != 1);
 ////////////////////////////////////
-
 
         switch (input) {
         case 'x':
@@ -144,7 +159,7 @@ void *boot_command(void *resolution)
             wheeling_figu();
             break;
         case 'v':
-            while (fall_figu_surf() != 1) {}
+            fall_figu_surf();
             break;
         case 'q':
             *addr = 66;
@@ -161,11 +176,17 @@ void *boot_command(void *resolution)
 
 int main()
 {
+    srand(time(NULL));
+
+
     int resolution[2] = {0};
 
     pthread_t thread;
     pthread_t thread_boot;
 
+
+
+   //////////////////////////////////////////////настройка робочой области
     for(int line = 0; line < max_line; line++)
         for(int col = 0; col < max_col; col++)
             Surface.surface[line][col] = 0;
@@ -177,13 +198,14 @@ int main()
         Surface.surface[line][max_col-1] = 1;
         Surface.surface[line][0] = 1;
     }
-
-
-
-
     //out_surface();
     add_figu();
+    //////////////////////////////////////////////////////////////////////
 
+
+
+
+    //go
     pthread_create(&thread_boot, NULL, boot_command, (void *)&resolution[0]);
     pthread_create(&thread, NULL, threadFunc, (void *)&resolution);
 
@@ -194,9 +216,12 @@ int main()
 
 
     printf("\n");
-    system("clear");
+    //system("clear");
     return 0;
 }
+
+
+
 
 
 
@@ -214,79 +239,3 @@ int getch(void)
     return ch;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-/*
-        if(input == 'x')
-        {
-            bias_figu_rite();
-            input = '0';
-        }
-
-        if(input == 'z')
-        {
-            bias_figu_left();
-            input = '0';
-        }
-
-        if(input == 'c')
-        {
-            wheeling_figu();
-            input = '0';
-        }
-
-        if(input == 'q')
-        {
-            //if(pthread_join(thread, NULL) != 0)
-                printf("ERROR: \n");
-            break;
-        }
-
-
-
-
-
-
-
-        if(input == 'v')
-        {
-            while (fall_figu_surf() != 1) {}
-            input = '0';
-        }
-
-
-*/
-
-
-
-
-
-
-
-
-
-/*
- *
-
-
-int getche(void)
-{
-    struct termios oldattr, newattr;
-    int ch;
-    tcgetattr( STDIN_FILENO, &oldattr );
-    newattr = oldattr;
-    newattr.c_lflag &= ~( ICANON );
-    tcsetattr( STDIN_FILENO, TCSANOW, &newattr );
-    ch = getchar();
-    tcsetattr( STDIN_FILENO, TCSANOW, &oldattr );
-    return ch;
-}*/
