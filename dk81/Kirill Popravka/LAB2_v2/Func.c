@@ -3,7 +3,7 @@
 char* randomArray(int In_value) 
 {	
 
-	char* Out_array = malloc(In_value*(sizeof(char)));
+	char* Out_array = malloc((In_value + 1)*(sizeof(char)));
 	int r_value = 0;
 	int cnt = 0;
 
@@ -13,7 +13,7 @@ char* randomArray(int In_value)
 
 		if (r_value > 90 && r_value < 97) 
 		{ 
-			//
+			//printf("symbol");
 		}else {
 			Out_array[cnt] = (char)r_value;
 			cnt++;
@@ -59,4 +59,12 @@ void fileWrite(FILE* file, char* anArray)
 	}
 
 	fprintf(file, "%s", anArray);
+}
+
+void freeArray(char *anArray)
+{
+	if (NULL != anArray)
+	{
+		free(anArray);
+	}
 }

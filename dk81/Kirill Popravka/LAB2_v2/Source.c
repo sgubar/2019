@@ -23,6 +23,8 @@ void main(void)
 	fileWrite(file, arr);
 
 	fclose(file);
+	
+	freeArray(arr);
 
 	system("pause");
 

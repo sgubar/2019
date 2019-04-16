@@ -6,3 +6,4 @@
 char* randomArray(int);
 char* selectionSort(char*);
 void fileWrite(FILE*, char*);
+void freeArray(char *);
