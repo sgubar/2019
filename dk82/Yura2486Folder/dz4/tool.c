@@ -82,19 +82,19 @@ void writeArrayToJSON(FILE *fo, Array *anArray)
 				return;
 			}
 
-		fprintf(fo, "number(%d), squares: \n", anArray->number);
+		fprintf(fo, "{\n\"number\" : %d,\n\"count\" : %d,\n", anArray->number, anArray->count);
+		fprintf(fo, "\"Squares\" : \n\t[\n");
 
 		for (i; i < anArray->count; i++)
 			{
-				if (i < anArray->count)
-					{
-						fprintf(fo, "Square[%d]", i);
-					}	
 				writeSquareToJSON(fo, anArray->squares[i]);
-			
+				if (i < anArray->count - 1)
+					{
+						fprintf(fo, ",");
+					}
 				fprintf(fo, "\n");
 			}
-		fprintf(fo, "\n");
+		fprintf(fo, "\t]\n}");
 	}
 	
 void writeSquareToJSON(FILE *fo, Square *aSquare)
@@ -104,11 +104,11 @@ void writeSquareToJSON(FILE *fo, Square *aSquare)
 				return;
 			}
 			
-		fprintf(fo, " A");
+		fprintf(fo, "\t{\n\t\"A\" : ");
 		writePointToJSON(fo, aSquare->A);
-		fprintf(fo, " B");
+		fprintf(fo, ", \n\t\"B\" : ");
 		writePointToJSON(fo, aSquare->B);
-		//fprintf(fo, "\n");
+		fprintf(fo, "\n\t}");
 	}
 
 void writePointToJSON(FILE *fo, Point *aPoint)
@@ -117,7 +117,7 @@ void writePointToJSON(FILE *fo, Point *aPoint)
 			{
 				return;
 			}
-		fprintf(fo, "(%d; %d)", aPoint->x, aPoint->y);
+		fprintf(fo, "{\"x\" : %d, \"y\" : %d}", aPoint->x, aPoint->y);
 	}
 
 void printArray(Array *anArray)
