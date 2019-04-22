@@ -11,10 +11,12 @@ int main(int argc, char *argv[])
 	Triangle *triugolnik1 = createTriangle(b, a, c);
 	Triangle *triugolnik2 = createTriangle(c, b, a);
 
-	TriangleArray *triangleArray = createArray(4);
+	TriangleArray *triangleArray = createArray(10);
 	adding(triangleArray, triugolnik);
 	adding(triangleArray, triugolnik1);
 	adding(triangleArray, triugolnik2);
+	vstavka(8, triangleArray, triugolnik2);
+
 
 	printArray(triangleArray);
 	saveToJSON(triangleArray);
