@@ -8,35 +8,25 @@ void fileerror()
 char *copyArray(char *target, int size)
 {
 	char *copy = (char*)malloc(size*sizeof(char));
-	char *p_copy;
-	p_copy = copy;
 	if (NULL != copy)
 	{
 		for (int i = 0; i < size; i++)
 			copy[i] = target[i];
 	}
-	return p_copy;
+	return copy;
 }
 
 int chaosfillFile(FILE *file, const char filepath[], int lineSize)
 {
-	
-	/*if ((file = fopen(filepath, "a+")) == NULL){
-		fileerror();
-		return -1;
-	}*/
-	
 	//wreaks havoc
 	for (int i = 0; i < lineSize; i++)
 	{
 		int letterType = 0 + rand() % 2;
 			
-		if (letterType == 0)
-		{
+		if (letterType == 0){
 			fprintf(file, "%c", ('A' + rand() % ('Z' - 'A' + 1)));
 		}
-		else
-		{
+		else{
 			fprintf(file, "%c", ('a' + rand() % ('z' - 'a' + 1)));
 		}
 	}
@@ -46,11 +36,6 @@ int chaosfillFile(FILE *file, const char filepath[], int lineSize)
 
 int printResults(FILE *file, const char filepath[], const char name[], char *array, int size, double time)
 {
-	/*if ((file = fopen(filepath, "a+")) == NULL){
-		fileerror();
-		return -1;
-	}*/
-	
 	fprintf(file, "Sort type: %s\nResult: ", name);
 	for (int i = 0; i < size; i++)
 	{
@@ -59,8 +44,8 @@ int printResults(FILE *file, const char filepath[], const char name[], char *arr
 	}
 	fprintf(file, "\n");
 	
-	fprintf(file, "Time used in seconds: %f [ln(t) = %.2f]\nArray size: %d\n\n",
-						(time/CLOCKS_PER_SEC), log((time/CLOCKS_PER_SEC)), size);
+	fprintf(file, "Array size: %d\nTime used in seconds: %f\n\n",
+						size, (time/CLOCKS_PER_SEC));
 	
 	return 0;
 }
@@ -95,7 +80,7 @@ void selectionSort(char *array, int size)
 		int i_min = i;
 		for (int j = i + 1; j < size; j++)
 		{
-			if (array[j] > array[i_min]) //< down, > up
+			if (array[j] < array[i_min]) //< down, > up
 			{
 				i_min = j;
 			}

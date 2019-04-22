@@ -36,7 +36,6 @@ int main(int argc, char **argv)
 	//initializing stuff
 	char *array, *copyarr;
 	array = (char*)malloc(atoi(argv[1])*sizeof(char));
-	copyarr = (char*)malloc(atoi(argv[1])*sizeof(char));
 
 	//reading unsorted stuff
 	for (int i = 0; i < atoi(argv[1]); i++)
@@ -54,7 +53,7 @@ int main(int argc, char **argv)
 	clock_t start, end;
 	
 	//bubble sort		
-		//copying unsorted array
+		//copying unsorted array (can be function)
 	copyarr = copyArray(array, atoi(argv[1]));
 	
 		//testing bubble sort
