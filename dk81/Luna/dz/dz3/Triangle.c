@@ -95,7 +95,12 @@ TriangleArray *createArray(int dlina) {
 
 		if (NULL != theResult)
 		{
-			theResult->arr = (Triangle **)malloc(sizeof(Triangle *)  * dlina);  //выделяем память для массива треугольников  
+			theResult->arr = (Triangle **)malloc(sizeof(Triangle *)  * dlina);  //РІС‹РґРµР»СЏРµРј РїР°РјСЏС‚СЊ РґР»СЏ РјР°СЃСЃРёРІР° С‚СЂРµСѓРіРѕР»СЊРЅРёРєРѕРІ  
+
+			for (int i = 0; i < dlina; i++)
+			{
+				theResult->arr[i] = NULL;
+			}
 
 			if (NULL != theResult->arr)
 			{
@@ -109,111 +114,3 @@ TriangleArray *createArray(int dlina) {
 			}
 		}
 	}
-
-	return theResult;
-}
-
-void deleteTriangleArray(TriangleArray *arr) {
-
-	if (NULL != arr)
-	{
-		for (int i = 0; i < arr->dlina; i++)
-		{
-			deleteTriangle(arr->arr[i]);
-		}
-
-		free(arr->arr);
-		free(arr);
-	}
-}
-int adding(TriangleArray *arr, Triangle *edinorog) {
-
-	int theResult = -1;
-
-	if (NULL != arr && NULL != edinorog &&
-		arr->kolichestvo < arr->dlina)
-	{
-		arr->arr[arr->kolichestvo] = edinorog;
-
-
-		theResult = arr->kolichestvo;
-		arr->kolichestvo++;
-	}
-
-	return theResult;
-}
-int vstavka(int indeks, TriangleArray *arr, Triangle *edinorog) {
-	int theResult = -1;
-
-	if (NULL != arr && NULL != edinorog &&
-		indeks < arr->dlina && indeks >= 0)
-	{
-		arr->arr[indeks] = edinorog;
-		theResult = indeks;
-	}
-
-	return theResult;
-
-}
-
-void printArray(TriangleArray *arr) //выводит данные про массив и треугольники
-{
-	if (NULL == arr)
-	{
-		return ERROR;
-	}
-
-	printf("[TRIUGOLNIKI]: dlina(%i), kolichestvo(%i)", arr->dlina, arr->kolichestvo);
-	printf(", array: \n");
-
-	for (int i = 0; i < arr->kolichestvo; i++)
-	{
-		outputData(arr->arr[i]);
-		
-		printf("\n");
-	}
-}
-
-int saveToJSON(TriangleArray *zebra) {
-	FILE *file;
-
-	fopen_s(&file, "Triangles.json", "w+");
-
-	if (NULL == zebra)
-	{
-		return ERROR;
-	}
-
-	fprintf(file,"[TRIUGOLNIKI]: dlina(%i), kolichestvo(%i)", zebra->dlina, zebra->kolichestvo);
-	fprintf(file,", array: \n");
-
-	for (int i = 0; i < zebra->kolichestvo; i++)
-	{
-		outputDataToFile(zebra->arr[i], file);
-
-		fprintf(file,"\n");
-	}
-	fclose(file);
-}
-
-void outputDataToFile(Triangle *triugolnik, FILE *fp)
-{
-	fprintf(fp,"a:\n");
-	outputDotToFile(triugolnik->a, fp);
-	fprintf(fp,"b:\n");
-	outputDotToFile(triugolnik->b, fp);
-    fprintf(fp,"c:\n");
-	outputDotToFile(triugolnik->c, fp);
-
-	fprintf(fp,"ab=%f\n", CulcSide(triugolnik->a, triugolnik->b));
-	fprintf(fp,"bc=%f\n", CulcSide(triugolnik->b, triugolnik->c));
-	fprintf(fp,"ac=%f\n", CulcSide(triugolnik->a, triugolnik->c));
-
-	fprintf(fp,"square = %f\n", Square(triugolnik));
-}
-
-void outputDotToFile(Dot *a, FILE *fp)
-{
-	fprintf(fp,"x = %i\n", a->x);
-	fprintf(fp,"y = %i\n", a->y);
-}
