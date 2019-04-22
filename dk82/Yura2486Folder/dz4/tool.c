@@ -56,21 +56,19 @@ int addElementByIndex(Array *anArray, Square *aSquare, int index)
 					}
 				else
 					{
-						replaseSquareByIndex(anArray->squares[index], aSquare->A, aSquare->B);
+						replaseSquareByIndex(anArray, aSquare->A, aSquare->B, index);
 					}
 				theResult = index;
 			}
 		return theResult;
 	}
 
- void replaseSquareByIndex(Square *aSquare, Point *A, Point *B)
+ void replaseSquareByIndex(Array *anArray, Point *A, Point *B, int index)
 	{
 		if (NULL != A && NULL != B)
-		{
-			aSquare->A->x = A->x;
-			aSquare->A->y = A->y;
-			aSquare->B->x = B->x;
-			aSquare->B->y = B->y;
+		{		
+			destroySquare(anArray->squares[index]);
+			anArray->squares[index] = createSquare(A, B);
 		}
 	}
 
