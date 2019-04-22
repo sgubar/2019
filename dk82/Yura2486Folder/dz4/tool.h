@@ -41,7 +41,7 @@ void freeArray(Array *anArray);
 void writeArrayToJSON(FILE *fo, Array *anArray);
 void writeSquareToJSON(FILE *fo, Square *aSquare);
 void writePointToJSON(FILE *fo, Point *aPoint);
-void replaseSquareByIndex(Square *aSquare, Point *A, Point *B);
+void replaseSquareByIndex(Array *anArray, Point *A, Point *B, int index);
 
 void bubbleSort(Array *anArray);
 void selectionSort(Array *anArray);
