@@ -137,3 +137,34 @@ void sort_simple(LineArray *anArray)
 		}
 	}
 }
+
+void sort_select(LineArray *anArray)
+{
+	if (NULL == anArray || 0 == anArray->count)
+	{
+		return ;
+	}
+	
+//	for (int theOut = 0; theOut < aSize - 1; theOut ++)
+	for (int theOut = 0; theOut < anArray->count - 1; theOut ++)
+	{
+		int theMinIndex = theOut;
+	
+//		for (int theIn = theOut + 1; theIn < aSize; theIn ++)
+		for (int theIn = theOut + 1; theIn < anArray->count; theIn ++)
+		{
+//			if (anArray[theIn] < anArray[theMinIndex])
+			if (lenghLine(anArray->lines[theIn]) < lenghLine(anArray->lines[theMinIndex]))
+			{
+				theMinIndex = theIn;
+			}
+		}
+	
+//		int theTmp = anArray[theOut];
+//		anArray[theOut] = anArray[theMinIndex];
+//		anArray[theMinIndex] = theTmp;
+		Line *theTmp = anArray->lines[theOut];
+		anArray->lines[theOut] = anArray->lines[theMinIndex];
+		anArray->lines[theMinIndex] = theTmp;
+	}
+}

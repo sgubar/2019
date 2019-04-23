@@ -62,7 +62,8 @@ int main(int argc, const char * argv[])
 	addElement(theArray, &AB);
 	printArray(theArray);
 	
-	sort_simple(theArray);
+	//sort_simple(theArray);
+	sort_select(theArray);
 	printArray(theArray);
 	
 	FILE *theFile = fopen("/Users/sl/Desktop/test.json", "a+");
