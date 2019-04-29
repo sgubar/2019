@@ -1,0 +1,92 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include "tool.h"
+
+int main(int argc, char * argv) 
+{
+	char F[100];
+	printf("Enter value for F: ");
+	scanf("%s", F);
+	int F_dec = hex_to_dec(F);
+	printf("%d\n", F_dec);
+
+	int C = enter("C");
+	int D = enter("D");
+	
+	int result;
+	result = formula(F, C, D);
+	printf("Your result: %d", result);
+	printf("\n");
+	
+	system("pause");
+} 
+#include <stdio.h>
+#include "tool.h"
+
+int summ(int D)
+{
+	int result = 0;
+	
+	for (int i = 1; i <= D; i++)
+	{
+		result = result * i;
+	}
+	return result;
+}
+
+int hex_to_dec(char *F) 
+{
+	int len = strlen(F);
+	int base = 1;
+	int dec_val = 0;
+
+	for (int i = len - 1; i >= 0; i--)
+	{
+		if (F[i] >= '0' && F[i] <= '9')
+		{
+			dec_val = dec_val + (F[i] - 48)*base;
+			base = base * 16;
+		}
+		else if (F[i] >= 'A' && F[i] <= 'F')
+		{
+			dec_val = dec_val + (F[i] - 55)*base;
+			base = base * 16;
+		}
+		else if (F[i] >= 'a' && F[i] <= 'f')
+		{
+			dec_val = dec_val + (F[i] - 87)*base;
+			base = base * 16;
+		}
+		else
+		{
+			printf("Try again. Use 0-9 and A-F(a-f)\n");
+			return ERROR;
+		}
+	}
+	return dec_val;
+}
+
+int formula(int F, int C, int D)
+{
+	int result = 0;
+	result = summ(D) * (hex_to_dec(F) - C);
+}
+
+int enter(char *name)
+{
+	int result;
+	
+	printf("Enter your value %s: ", name);
+	scanf_s("%i", &result);
+	printf("\n");
+
+	return result;
+}
+#include <stdio.h>
+#include <string.h>
+#define ERROR -1
+
+int summ(int D);
+int hex_to_dec(char *F);
+int formula(int F, int C, int D);
+int enter(int value);
