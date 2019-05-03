@@ -50,4 +50,3 @@ void insertionSort(Array *anArray);
 void shellSort(Array *anArray, int aCount);
 
 #endif
-

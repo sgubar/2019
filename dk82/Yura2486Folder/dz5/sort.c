@@ -5,6 +5,8 @@
 
 void bubbleSort(Array *anArray)
 	{
+		if(NULL != anArray)
+		{
 		int i, j;
 		Square* temp;
 		
@@ -20,10 +22,13 @@ void bubbleSort(Array *anArray)
 							}
 					}
 			}
+		}
 	}
 	
 void selectionSort(Array *anArray)
 	{
+		if(NULL != anArray)
+		{
 		int i, j;
 		Square* temp;
 		int minIndex;
@@ -43,11 +48,14 @@ void selectionSort(Array *anArray)
 				anArray->squares[i] = anArray->squares[minIndex];
 				anArray->squares[minIndex] = temp;
 			}
+		}
 	}
 
 void insertionSort(Array *anArray)
 	{
-			int i, j;
+		if(NULL != anArray)
+		{
+		int i, j;
 		Square* temp;
 	
 		for (i = 1; i < anArray->number; i++)
@@ -61,10 +69,13 @@ void insertionSort(Array *anArray)
 				j--;
 			}
 		}
+		}
 	}
 
 void shellSort(Array *anArray, int aCount)
 {
+	if(NULL != anArray)
+	{
 	int theInner = 0;
 	int theOuter = 0;
 	int theH = 1; // start h = 1
@@ -94,5 +105,6 @@ void shellSort(Array *anArray, int aCount)
 		}
 	
 		theH = (theH - 1) / 3; //decrease h
+	}
 	}
 }

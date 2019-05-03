@@ -77,7 +77,7 @@ int main(int argc, const char * argv[])
 	printf("Enter key to search\n");
 	scanf("%d", &key);
 	int* result = linearSearch(theArray3, key);
-	if (result[0] == -1)
+	if (result[0] == -1 || NULL == result)
 		{
 			printf("Square not found");
 		}

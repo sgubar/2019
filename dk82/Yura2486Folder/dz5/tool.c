@@ -8,6 +8,9 @@ int *linearSearch(Array *anArray, int key)
 		int i = 0;
 		int j = 0;
 		int* result = (int*) malloc(sizeof(int)*anArray->number);
+		
+		if (NULL != result)
+		{
 		memset(result, -1, sizeof(int)*anArray->number);
 		
 		for(i; i < anArray->number; i++)
@@ -18,6 +21,7 @@ int *linearSearch(Array *anArray, int key)
 						j++;
 					}
 			}
+		}
 		return result;
 	}
 	
