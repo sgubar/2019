@@ -1,0 +1,97 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+FILE * f;
+
+void masiv(int *mas);
+
+
+
+int main(int argc, char *argv[])
+
+
+
+ {
+
+ 	f = fopen("file2.txt", "w");
+ 	
+ 	int i;
+	 
+	 int masiv1[10];
+	 int masiv2[10];
+	 int masiv3[10];
+	 
+	 int max_int = 10;
+ 	
+ 	int mas[10];
+ 	
+ 	masiv(&mas);
+ 	
+ 	
+ 	for(i = 0; i < max_int; i++)
+ 	{
+ 		masiv1[i]=mas[i];
+ 		masiv2[i]=mas[i];
+ 		masiv3[i]=mas[i];
+	 }
+	
+	bubbleSort(masiv1, max_int );
+	
+	
+	selectionSort(masiv2, max_int);
+
+
+	insertionSort(masiv3, max_int);
+	
+	
+	
+	for(i = 0; i < max_int; i++)
+	{
+		printf("%i\t", mas[i]);
+		fprintf(f, "%i\t", mas[i]);
+	}
+	
+	printf("\n///////////\n");
+	fprintf(f, "\n///////////\n");
+	
+	
+	for(i = 0; i < max_int; i++)
+	{
+		printf("%i\t", masiv1[i]);
+		fprintf(f, "%i\t", masiv1[i]);
+	}
+	
+	printf("\n///////////\n");
+	fprintf(f, "\n///////////\n");
+		
+	for(i = 0; i < max_int; i++)
+	{
+		printf("%i\t", masiv2[i]);
+		fprintf(f, "%i\t", masiv2[i]);
+	}
+	
+	printf("\n///////////\n");
+	fprintf(f, "\n///////////\n");
+		
+	for(i = 0; i < max_int; i++)
+	{
+		printf("%i\t", masiv3[i]);
+		fprintf(f, "%i\t", masiv3[i]);
+	}
+	
+ 		
+ }
+ 
+ 
+ void masiv(int *mas)
+ {
+ 	int i;
+ 	
+ 	for(i = 0; i < 10; i++)
+ 	{
+ 		printf("%i: ", i);
+ 		scanf("%i", &mas[i]);
+	 }
+ }
+ 
+ fclose(f); 
