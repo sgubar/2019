@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
+#include <stdbool.h>
+
 
 intList *createList()
 {
@@ -61,8 +63,8 @@ void printList(intList *aList)
 	int i = 0;
 	int n = 0;
 	int j = countList(aList);
-	intNode *theNode = aList->head->nextNode;
-	for (i; i < j; i++)
+	intNode *theNode = aList->head;
+	for (i; i < j+5; i++)
 	{
 		if (NULL != theNode)
 		{
@@ -141,28 +143,37 @@ void addNElementsInList(intList *aList, int n)
 }
 
 void bubbleSort(intList *aList)
-	{
-		if(NULL != aList)
+{
+    if(NULL != aList)
+    {
+        if (aList->count <= 1)
+        return;
+        
+        int temp;
+        unsigned int i = 0;
+        intNode* theNode = aList->head;
+        bool isSwaped = true;
+        
+		while (isSwaped)
 		{
-		int i, j;
-		int temp;
-		intNode* theNode = aList->head->nextNode;
-		for(i = 0; i<9; i++)
+            isSwaped = false;
+            theNode = aList->head;
+            for (i = 0; i < aList->count-1; ++i)
 			{
-				for(j = 0; j<10; j++)
-					{
-						if (theNode->value > theNode->nextNode->value)
-							{
-								temp = theNode->value;
-								theNode->value = theNode->nextNode->value;
-								theNode->nextNode->value = temp;
-							}
-						theNode = theNode->nextNode;
-					}
-					
-			}
-		}
-	}
+                if (theNode->value > theNode->nextNode->value)
+                {
+                    temp=theNode->value;
+                    theNode->value=theNode->nextNode->value;
+                    theNode->nextNode->value=temp;
+                    isSwaped=true;
+                }
+                theNode=theNode->nextNode;
+            }
+        }
+
+    }
+    return;
+}
 	
 /*
 void bubbleSort(intList *aList)
