@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "List.h"
+
+
+
+int main()
+{
+
+    DoubleList* theList=CreateDoubleList();
+
+    AddDoubleValueToList(theList,12.5);
+    AddDoubleValueToList(theList,7.3);
+    AddDoubleValueToList(theList,8.2);
+    AddDoubleValueToList(theList,1.2);
+    AddDoubleValueToList(theList,1.2);
+    AddDoubleValueToList(theList,8.2);
+
+
+
+
+
+
+
+    PrintList(theList);
+
+    printf("The list contains %d elements\n",CountList(theList));
+
+    //printf("The value under given index is %.2f",DoubleValueAtIndex(theList,2));
+
+    quickSort(theList,0,5);
+
+    PrintList(theList);
+
+   DeleteSameNodes(theList);
+
+
+    PrintList(theList);
+
+    DestroyDoubleList(theList);
+    return 0;
+}
