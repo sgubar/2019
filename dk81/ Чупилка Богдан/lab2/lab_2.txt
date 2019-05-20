@@ -1,0 +1,75 @@
+Once more ye waver dreamily before me,
+Forms that so early cheered my troubled eyes!
+To hold you fast doth still my heart implore me?
+Still bid me clutch the charm that lures and flies?
+Ye crowd around! come, then, hold empire o'er me,
+As from the mist and haze of thought ye rise;
+The magic atmosphere, your train enwreathing,
+Through my thrilled bosom youthful bliss is breathing.
+
+Ye bring with you the forms of hours Elysian,
+And shades of dear ones rise to meet my gaze;
+First Love and Friendship steal upon my vision
+Like an old tale of legendary days;
+Sorrow renewed, in mournful repetition,
+Runs through life's devious, labyrinthine ways;
+And, sighing, names the good (by Fortune cheated
+Of blissful hours!) who have before me fleeted.
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include "easy_sort.h"
+
+
+
+int main()
+{
+	float TimeStart,TimeStop;
+	int size = 0;
+	
+	printf("Lets start sorting!\n");
+	
+	char *bubble = loadFile("lab_2.txt" , &size);
+
+	TimeStart = clock()/(float)CLOCKS_PER_SEC;
+	bubble_sort(bubble, size);
+	TimeStop = clock()/(float)CLOCKS_PER_SEC;
+
+	printf("\nBubble Sort: %f \n", TimeStop - TimeStart);
+
+
+
+	char *insert = loadFile("lab_2.txt" , &size);
+
+	TimeStart = clock()/(float)CLOCKS_PER_SEC;
+	insert_sort(insert, size);
+	TimeStop = clock()/(float)CLOCKS_PER_SEC;
+
+	printf("\nInsert Sort: %f \n", TimeStop - TimeStart);
+
+
+
+	char *selection = loadFile("lab_2.txt" , &size);
+
+	TimeStart = clock()/(float)CLOCKS_PER_SEC;
+	selection_sort(selection, size);
+	TimeStop = clock()/(float)CLOCKS_PER_SEC;
+
+	printf("\nSelection Sort: %f \n", TimeStop - TimeStart);
+
+
+
+	record_to_file(bubble, size, "bubble.txt");
+	record_to_file(insert, size, "insert.txt");
+	record_to_file(selection, size, "selection.txt");
+	printf("\nCheck created files:)\n");
+
+
+
+	free(bubble);
+	free(insert);
+	free(selection);
+
+	return 0;
+}
