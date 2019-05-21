@@ -1,0 +1,478 @@
+
+ Hide
+WLE Austria Logo (no text).svgWiki Loves Earth photo contest: Upload photos of Ukraine’s natural heritage sites to help Wikipedia and win prizes!
+C character classification
+From Wikipedia, the free encyclopedia
+Jump to navigationJump to search
+
+This article needs additional citations for verification. Please help improve this article by adding citations to reliable sources. Unsourced material may be challenged and removed.
+Find sources: "C character classification" – news · newspapers · books · scholar · JSTOR (October 2011) (Learn how and when to remove this template message)
+C standard library
+General topics
+Data types
+Character classification
+Strings
+Mathematics
+File input/output
+Date/time
+Localization
+Memory allocation
+Process control
+Signals
+Alternative tokens
+Miscellaneous headers
+<assert.h>
+<errno.h>
+<setjmp.h>
+<stdarg.h>
+vte
+C character classification is an operation provided by a group of functions in the ANSI C Standard Library for the C programming language. These functions are used to test characters for membership in a particular class of characters, such as alphabetic characters, control characters, etc. Both single-byte, and wide characters are supported.[1]
+
+
+Contents
+1	History
+2	Implementation
+3	Overview of functions
+4	References
+5	External links
+History
+Early toolsmiths writing in C under Unix began developing idioms at a rapid rate to classify characters into different types. For example, in the ASCII character set, the following test identifies a letter:
+
+if (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z'))
+However, this idiom does not necessarily work for other character sets such as EBCDIC.
+
+Pretty soon, programs became thick with tests such as the one above, or worse, tests almost like the one above. A programmer can write the same idiom several different ways, which slows comprehension and increases the chance for errors.
+
+Before long, the idioms were replaced by the functions in <ctype.h>.
+
+Implementation
+Unlike the above example, the character classification routines are not written as comparison tests. In most C libraries, they are written as static table lookups instead of macros or functions.
+
+For example, an array of 256 eight-bit integers, arranged as bitfields, is created, where each bit corresponds to a particular property of the character, e.g., isdigit, isalpha. If the lowest-order bit of the integers corresponds to the isdigit property, the code could be written thus:
+
+#define isdigit(x) (TABLE[x] & 1)
+Early versions of Linux used a potentially faulty method similar to the first code sample:
+
+#define isdigit(x) ((x) >= '0' && (x) <= '9')
+This can cause problems if x has a side effect---for instance, if one calls isdigit(x++) or isdigit(run_some_program()). It would not be immediately evident that the argument to isdigit is being evaluated twice. For this reason, the table-based approach is generally used.
+
+The difference between these two methods became a point of interest during the SCO v. IBM case.[clarification needed]
+
+Overview of functions
+The functions that operate on single-byte characters are defined in ctype.h header (cctype header in C++). The functions that operate on wide characters are defined in wctype.h header (cwctype header in C++).
+
+The classification is done according to the current locale.
+
+Byte
+character	Wide
+character	Description
+isalnum	iswalnum	checks if a byte/wchar_t is alphanumeric
+isalpha	iswalpha	checks if a byte/wchar_t is alphabetic
+islower	iswlower	checks if a byte/wchar_t is lowercase
+isupper	iswupper	checks if a byte/wchar_t is an uppercase byte/wchar_t
+isdigit	iswdigit	checks if a byte/wchar_t is a digit
+isxdigit	iswxdigit	checks if a byte/wchar_t is a hexadecimal byte/wchar_t
+iscntrl	iswcntrl	checks if a byte/wchar_t is a control byte/wchar_t
+isgraph	iswgraph	checks if a byte/wchar_t is a graphical byte/wchar_t
+isspace	iswspace	checks if a byte/wchar_t is a space byte/wchar_t
+isblank	iswblank	checks if a byte/wchar_t is a blank byte/wchar_t (C99/C++11)
+isprint	iswprint	checks if a byte/wchar_t is a printing byte/wchar_t
+ispunct	iswpunct	checks if a byte/wchar_t is a punctuation byte/wchar_t
+tolower	towlower	converts a byte/wchar_t to lowercase
+toupper	towupper	converts a byte/wchar_t to uppercase
+N/A	iswctype	checks if a wchar_t falls into specific class
+N/A	towctrans	converts a wchar_t using a specific mapping
+N/A	wctype	returns a wide character class to be used with iswctype
+N/A	wctrans	returns a transformation mapping to be used with towctrans
+References
+ ISO/IEC 9899:1999 specification (PDF). p. 193, § 7.4.
+External links
+	The Wikibook A Little C Primer has a page on the topic of: C Character Class Test Library
+	The Wikibook C Programming has a page on the topic of: C Programming/C Reference
+vte
+C programming language
+ANSI C C89 and C90 C99 C11 C18 Embedded C MISRA C
+Features	
+Functions Header files Libraries Operators String Syntax Preprocessor Data types
+Standard library
+functions	
+Char (ctype.h) File I/O (stdio.h) Math (math.h) Dynamic memory (stdlib.h) String (string.h) Time (time.h) Variadic (stdarg.h) POSIX
+Standard
+libraries	
+Bionic libhybris dietlibc EGLIBC glibc klibc Microsoft Run-time Library musl Newlib uClibc BSD libc
+Compilers	
+Comparison of compilers ACK Borland Turbo C Clang GCC ICC LCC PCC SDCC TCC Microsoft Visual Studio / Express / C++ Watcom C/C++
+IDEs	
+Comparison of IDEs Anjuta Code::Blocks CodeLite Eclipse Geany Microsoft Visual Studio NetBeans
+Comparison with
+other languages	
+Compatibility of C and C++ Comparison with Embedded C Comparison with Pascal Comparison of programming languages
+Descendant
+languages	
+C++ C# D Objective-C Alef Limbo Go Vala
+Category Category
+Template:Its True
+
+Categories: C standard library
+Navigation menu
+Not logged inTalkContributionsCreate accountLog inArticleTalkReadEditView historySearch
+Search Wikipedia
+Main page
+Contents
+Featured content
+Current events
+Random article
+Donate to Wikipedia
+Wikipedia store
+Interaction
+Help
+About Wikipedia
+Community portal
+Recent changes
+Contact page
+Tools
+What links here
+Related changes
+Upload file
+Special pages
+Permanent link
+Page information
+Wikidata item
+Cite this page
+Print/export
+Create a book
+Download as PDF
+Printable version
+
+Languages
+????????
+Espanol
+???
+Italiano
+Portugues
+Ðóññêèé
+Óêðà¿íñüêà
+??
+Edit links
+This page was last edited on 16 October 2017, at 20:28 (UTC).
+Text is available under the Creative Commons Attribution-ShareAlike License; additional terms may apply. By using this site, you agree to the Terms of Use and Privacy Policy. Wikipedia® is a registered trademark of the Wikimedia Foundation, Inc., a non-profit organization.
+Privacy policyAbout WikipediaDisclaimersContact WikipediaDevelopersCo
+ 
+ Hide
+WLE Austria Logo (no text).svgWiki Loves Earth photo contest: Upload photos of Ukraine’s natural heritage sites to help Wikipedia and win prizes!
+C character classification
+From Wikipedia, the free encyclopedia
+Jump to navigationJump to search
+
+This article needs additional citations for verification. Please help improve this article by adding citations to reliable sources. Unsourced material may be challenged and removed.
+Find sources: "C character classification" – news · newspapers · books · scholar · JSTOR (October 2011) (Learn how and when to remove this template message)
+C standard library
+General topics
+Data types
+Character classification
+Strings
+Mathematics
+File input/output
+Date/time
+Localization
+Memory allocation
+Process control
+Signals
+Alternative tokens
+Miscellaneous headers
+<assert.h>
+<errno.h>
+<setjmp.h>
+<stdarg.h>
+vte
+C character classification is an operation provided by a group of functions in the ANSI C Standard Library for the C programming language. These functions are used to test characters for membership in a particular class of characters, such as alphabetic characters, control characters, etc. Both single-byte, and wide characters are supported.[1]
+
+
+Contents
+1	History
+2	Implementation
+3	Overview of functions
+4	References
+5	External links
+History
+Early toolsmiths writing in C under Unix began developing idioms at a rapid rate to classify characters into different types. For example, in the ASCII character set, the following test identifies a letter:
+
+if (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z'))
+However, this idiom does not necessarily work for other character sets such as EBCDIC.
+
+Pretty soon, programs became thick with tests such as the one above, or worse, tests almost like the one above. A programmer can write the same idiom several different ways, which slows comprehension and increases the chance for errors.
+
+Before long, the idioms were replaced by the functions in <ctype.h>.
+
+Implementation
+Unlike the above example, the character classification routines are not written as comparison tests. In most C libraries, they are written as static table lookups instead of macros or functions.
+
+For example, an array of 256 eight-bit integers, arranged as bitfields, is created, where each bit corresponds to a particular property of the character, e.g., isdigit, isalpha. If the lowest-order bit of the integers corresponds to the isdigit property, the code could be written thus:
+
+#define isdigit(x) (TABLE[x] & 1)
+Early versions of Linux used a potentially faulty method similar to the first code sample:
+
+#define isdigit(x) ((x) >= '0' && (x) <= '9')
+This can cause problems if x has a side effect---for instance, if one calls isdigit(x++) or isdigit(run_some_program()). It would not be immediately evident that the argument to isdigit is being evaluated twice. For this reason, the table-based approach is generally used.
+
+The difference between these two methods became a point of interest during the SCO v. IBM case.[clarification needed]
+
+Overview of functions
+The functions that operate on single-byte characters are defined in ctype.h header (cctype header in C++). The functions that operate on wide characters are defined in wctype.h header (cwctype header in C++).
+
+The classification is done according to the current locale.
+
+Byte
+character	Wide
+character	Description
+isalnum	iswalnum	checks if a byte/wchar_t is alphanumeric
+isalpha	iswalpha	checks if a byte/wchar_t is alphabetic
+islower	iswlower	checks if a byte/wchar_t is lowercase
+isupper	iswupper	checks if a byte/wchar_t is an uppercase byte/wchar_t
+isdigit	iswdigit	checks if a byte/wchar_t is a digit
+isxdigit	iswxdigit	checks if a byte/wchar_t is a hexadecimal byte/wchar_t
+iscntrl	iswcntrl	checks if a byte/wchar_t is a control byte/wchar_t
+isgraph	iswgraph	checks if a byte/wchar_t is a graphical byte/wchar_t
+isspace	iswspace	checks if a byte/wchar_t is a space byte/wchar_t
+isblank	iswblank	checks if a byte/wchar_t is a blank byte/wchar_t (C99/C++11)
+isprint	iswprint	checks if a byte/wchar_t is a printing byte/wchar_t
+ispunct	iswpunct	checks if a byte/wchar_t is a punctuation byte/wchar_t
+tolower	towlower	converts a byte/wchar_t to lowercase
+toupper	towupper	converts a byte/wchar_t to uppercase
+N/A	iswctype	checks if a wchar_t falls into specific class
+N/A	towctrans	converts a wchar_t using a specific mapping
+N/A	wctype	returns a wide character class to be used with iswctype
+N/A	wctrans	returns a transformation mapping to be used with towctrans
+References
+ ISO/IEC 9899:1999 specification (PDF). p. 193, § 7.4.
+External links
+	The Wikibook A Little C Primer has a page on the topic of: C Character Class Test Library
+	The Wikibook C Programming has a page on the topic of: C Programming/C Reference
+vte
+C programming language
+ANSI C C89 and C90 C99 C11 C18 Embedded C MISRA C
+Features	
+Functions Header files Libraries Operators String Syntax Preprocessor Data types
+Standard library
+functions	
+Char (ctype.h) File I/O (stdio.h) Math (math.h) Dynamic memory (stdlib.h) String (string.h) Time (time.h) Variadic (stdarg.h) POSIX
+Standard
+libraries	
+Bionic libhybris dietlibc EGLIBC glibc klibc Microsoft Run-time Library musl Newlib uClibc BSD libc
+Compilers	
+Comparison of compilers ACK Borland Turbo C Clang GCC ICC LCC PCC SDCC TCC Microsoft Visual Studio / Express / C++ Watcom C/C++
+IDEs	
+Comparison of IDEs Anjuta Code::Blocks CodeLite Eclipse Geany Microsoft Visual Studio NetBeans
+Comparison with
+other languages	
+Compatibility of C and C++ Comparison with Embedded C Comparison with Pascal Comparison of programming languages
+Descendant
+languages	
+C++ C# D Objective-C Alef Limbo Go Vala
+Category Category
+Template:Its True
+
+Categories: C standard library
+Navigation menu
+Not logged inTalkContributionsCreate accountLog inArticleTalkReadEditView historySearch
+Search Wikipedia
+Main page
+Contents
+Featured content
+Current events
+Random article
+Donate to Wikipedia
+Wikipedia store
+Interaction
+Help
+About Wikipedia
+Community portal
+Recent changes
+Contact page
+Tools
+What links here
+Related changes
+Upload file
+Special pages
+Permanent link
+Page information
+Wikidata item
+Cite this page
+Print/export
+Create a book
+Download as PDF
+Printable version
+
+Languages
+????????
+Espanol
+???
+Italiano
+Portugues
+Ðóññêèé
+Óêðà¿íñüêà
+??
+Edit links
+This page was last edited on 16 October 2017, at 20:28 (UTC).
+Text is available under the Creative Commons Attribution-ShareAlike License; additional terms may apply. By using this site, you agree to the Terms of Use and Privacy Policy. Wikipedia® is a registered trademark of the Wikimedia Foundation, Inc., a non-profit organization.
+Privacy policyAbout WikipediaDisclaimersContact WikipediaDevelopersCo
+ 
+ Hide
+WLE Austria Logo (no text).svgWiki Loves Earth photo contest: Upload photos of Ukraine’s natural heritage sites to help Wikipedia and win prizes!
+C character classification
+From Wikipedia, the free encyclopedia
+Jump to navigationJump to search
+
+This article needs additional citations for verification. Please help improve this article by adding citations to reliable sources. Unsourced material may be challenged and removed.
+Find sources: "C character classification" – news · newspapers · books · scholar · JSTOR (October 2011) (Learn how and when to remove this template message)
+C standard library
+General topics
+Data types
+Character classification
+Strings
+Mathematics
+File input/output
+Date/time
+Localization
+Memory allocation
+Process control
+Signals
+Alternative tokens
+Miscellaneous headers
+<assert.h>
+<errno.h>
+<setjmp.h>
+<stdarg.h>
+vte
+C character classification is an operation provided by a group of functions in the ANSI C Standard Library for the C programming language. These functions are used to test characters for membership in a particular class of characters, such as alphabetic characters, control characters, etc. Both single-byte, and wide characters are supported.[1]
+
+
+Contents
+1	History
+2	Implementation
+3	Overview of functions
+4	References
+5	External links
+History
+Early toolsmiths writing in C under Unix began developing idioms at a rapid rate to classify characters into different types. For example, in the ASCII character set, the following test identifies a letter:
+
+if (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z'))
+However, this idiom does not necessarily work for other character sets such as EBCDIC.
+
+Pretty soon, programs became thick with tests such as the one above, or worse, tests almost like the one above. A programmer can write the same idiom several different ways, which slows comprehension and increases the chance for errors.
+
+Before long, the idioms were replaced by the functions in <ctype.h>.
+
+Implementation
+Unlike the above example, the character classification routines are not written as comparison tests. In most C libraries, they are written as static table lookups instead of macros or functions.
+
+For example, an array of 256 eight-bit integers, arranged as bitfields, is created, where each bit corresponds to a particular property of the character, e.g., isdigit, isalpha. If the lowest-order bit of the integers corresponds to the isdigit property, the code could be written thus:
+
+#define isdigit(x) (TABLE[x] & 1)
+Early versions of Linux used a potentially faulty method similar to the first code sample:
+
+#define isdigit(x) ((x) >= '0' && (x) <= '9')
+This can cause problems if x has a side effect---for instance, if one calls isdigit(x++) or isdigit(run_some_program()). It would not be immediately evident that the argument to isdigit is being evaluated twice. For this reason, the table-based approach is generally used.
+
+The difference between these two methods became a point of interest during the SCO v. IBM case.[clarification needed]
+
+Overview of functions
+The functions that operate on single-byte characters are defined in ctype.h header (cctype header in C++). The functions that operate on wide characters are defined in wctype.h header (cwctype header in C++).
+
+The classification is done according to the current locale.
+
+Byte
+character	Wide
+character	Description
+isalnum	iswalnum	checks if a byte/wchar_t is alphanumeric
+isalpha	iswalpha	checks if a byte/wchar_t is alphabetic
+islower	iswlower	checks if a byte/wchar_t is lowercase
+isupper	iswupper	checks if a byte/wchar_t is an uppercase byte/wchar_t
+isdigit	iswdigit	checks if a byte/wchar_t is a digit
+isxdigit	iswxdigit	checks if a byte/wchar_t is a hexadecimal byte/wchar_t
+iscntrl	iswcntrl	checks if a byte/wchar_t is a control byte/wchar_t
+isgraph	iswgraph	checks if a byte/wchar_t is a graphical byte/wchar_t
+isspace	iswspace	checks if a byte/wchar_t is a space byte/wchar_t
+isblank	iswblank	checks if a byte/wchar_t is a blank byte/wchar_t (C99/C++11)
+isprint	iswprint	checks if a byte/wchar_t is a printing byte/wchar_t
+ispunct	iswpunct	checks if a byte/wchar_t is a punctuation byte/wchar_t
+tolower	towlower	converts a byte/wchar_t to lowercase
+toupper	towupper	converts a byte/wchar_t to uppercase
+N/A	iswctype	checks if a wchar_t falls into specific class
+N/A	towctrans	converts a wchar_t using a specific mapping
+N/A	wctype	returns a wide character class to be used with iswctype
+N/A	wctrans	returns a transformation mapping to be used with towctrans
+References
+ ISO/IEC 9899:1999 specification (PDF). p. 193, § 7.4.
+External links
+	The Wikibook A Little C Primer has a page on the topic of: C Character Class Test Library
+	The Wikibook C Programming has a page on the topic of: C Programming/C Reference
+vte
+C programming language
+ANSI C C89 and C90 C99 C11 C18 Embedded C MISRA C
+Features	
+Functions Header files Libraries Operators String Syntax Preprocessor Data types
+Standard library
+functions	
+Char (ctype.h) File I/O (stdio.h) Math (math.h) Dynamic memory (stdlib.h) String (string.h) Time (time.h) Variadic (stdarg.h) POSIX
+Standard
+libraries	
+Bionic libhybris dietlibc EGLIBC glibc klibc Microsoft Run-time Library musl Newlib uClibc BSD libc
+Compilers	
+Comparison of compilers ACK Borland Turbo C Clang GCC ICC LCC PCC SDCC TCC Microsoft Visual Studio / Express / C++ Watcom C/C++
+IDEs	
+Comparison of IDEs Anjuta Code::Blocks CodeLite Eclipse Geany Microsoft Visual Studio NetBeans
+Comparison with
+other languages	
+Compatibility of C and C++ Comparison with Embedded C Comparison with Pascal Comparison of programming languages
+Descendant
+languages	
+C++ C# D Objective-C Alef Limbo Go Vala
+Category Category
+Template:Its True
+
+Categories: C standard library
+Navigation menu
+Not logged inTalkContributionsCreate accountLog inArticleTalkReadEditView historySearch
+Search Wikipedia
+Main page
+Contents
+Featured content
+Current events
+Random article
+Donate to Wikipedia
+Wikipedia store
+Interaction
+Help
+About Wikipedia
+Community portal
+Recent changes
+Contact page
+Tools
+What links here
+Related changes
+Upload file
+Special pages
+Permanent link
+Page information
+Wikidata item
+Cite this page
+Print/export
+Create a book
+Download as PDF
+Printable version
+
+Languages
+????????
+Espanol
+???
+Italiano
+Portugues
+Ðóññêèé
+Óêðà¿íñüêà
+??
+Edit links
+This page was last edited on 16 October 2017, at 20:28 (UTC).
+Text is available under the Creative Commons Attribution-ShareAlike License; additional terms may apply. By using this site, you agree to the Terms of Use and Privacy Policy. Wikipedia® is a registered trademark of the Wikimedia Foundation, Inc., a non-profit organization.
+Privacy policyAbout WikipediaDisclaimersContact WikipediaDevelopersCo
+ 
