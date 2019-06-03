@@ -1,5 +1,6 @@
 #include "tool.h"
 
+
 char *shellSort(char *mass, int size)
 {
 	int i = 0;
@@ -20,7 +21,6 @@ char *shellSort(char *mass, int size)
 				mass[i] = mass[i - h];
 				i -= h;
 			}
-
 			mass[i] = temp;
 		}
 		h = (h - 1) / 3;
@@ -29,18 +29,22 @@ char *shellSort(char *mass, int size)
 }
 
 
+int fileSize(FILE *fp) {
+	fseek(fp, 0l, SEEK_END);
+	int fileSize = ftell(fp);
+	fseek(fp, 0l, SEEK_SET);
+	return fileSize;
+}
+
 char *readFile(FILE *fp) {
 	if (NULL == fp) {
 		return -1;
 	}
 
-	fseek(fp, 0l, SEEK_END);
-	int fileSize = ftell(fp);
-	fseek(fp, 0l, SEEK_SET);
+	int size = fileSize(fp);
 
-	char *mass = (char*)malloc(sizeof(char) * fileSize);
-	fgets(mass, fileSize, fp);
-	fseek(fp, 0l, SEEK_SET);
+	char *mass = (char*)malloc(sizeof(char) * size);
+	fgets(mass, size, fp);
 
 	printf("Input: %s\n", mass);
 	return mass;
@@ -48,18 +52,16 @@ char *readFile(FILE *fp) {
 
 int linearSearch(char *mass, char c, int size)
 {
-	if (NULL == mass || size <= 0) {
-		return -1;
-	}
-
 	int result = -1;
-
+	if (NULL == mass || size <= 0) {
+		return result;
+	}
 	for (int i = 0; i < size; i++)
 	{
 		if (mass[i] == c) {
 			return i;
 		}
 	}
-
 	return result;
 }
+
