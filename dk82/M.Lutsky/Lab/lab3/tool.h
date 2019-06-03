@@ -5,3 +5,5 @@
 int linearSearch(char *mass, char c, int size);
 char *readFile(FILE *fp);
 char* shellSort(char *mass, int size);
+int fileSize(FILE *fp);
+#pragma once
