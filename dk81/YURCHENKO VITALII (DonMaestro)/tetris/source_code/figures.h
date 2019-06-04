@@ -15,7 +15,7 @@ struct figure_coordinates
 
 
 
-void add_figu();
+int add_figu(int random);
 
 int wheeling_figu();
 
